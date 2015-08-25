@@ -30,12 +30,30 @@ angular.module('jsPatternsDemo',
                 .warnPalette('red');
         }
 ])
-.controller('HomeCtrl', 
+.controller('SidebarCtrl', 
     [
         function() {
             var vm = this;
 
-            vm.appName = "JavaScript Design Patterns Demo";
+            vm.patterns = [
+                'Factory',
+                'Decorator',
+                'Visitor'
+            ];
+        }
+    ]
+)
+.controller('ToolbarCtrl', 
+    [
+        '$mdSidenav',
+        function($mdSidenav) {
+            var vm = this;
+
+            vm.compomentName = "Toolbar";
+
+            vm.showNav = function showNav() {
+                $mdSidenav('patterns').toggle();
+            };
         }
     ]
 );

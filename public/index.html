@@ -24,7 +24,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.1/angular-material.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
@@ -35,9 +35,34 @@
     <script src="app.js"></script>
 
 </head>
-<body ng-app="jsPatternsDemo">
+<body ng-app="jsPatternsDemo" layout="column">
 
-    <div ui-view></div>
+    <md-toolbar ng-controller="ToolbarCtrl as ctrl">
+        <div class="md-toolbar-tools">
+            <md-button hide-gt-md class="md-icon-button" aria-label="Menu" ng-click="ctrl.showNav()">
+                <i class="material-icons icon-button-adjust">menu</i>
+            </md-button>
+            <h2><span><a ui-sref="home">JS Patterns Demo</a></span></h2>
+        </div>
+    </md-toolbar>
+
+    <div flex layout="row">
+        <md-sidenav md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2" md-component-id="patterns" layout="column">
+            <md-content ng-controller="SidebarCtrl as ctrl" flex>
+                <div layout="column" flex>
+                    <div flex>
+                        <md-list>
+                            <md-item ng-repeat="p in ctrl.patterns">
+                                <h3 class="patterns-list-item">{{p}}</h3>
+                            </md-item>
+                        </md-list>
+                    </div>
+                </div>
+            </md-content>
+        </md-sidenav>
+
+        <div ui-view></div>
+    </div>
 
 </body>
 </html>
