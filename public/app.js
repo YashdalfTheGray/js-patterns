@@ -11,14 +11,21 @@ angular.module('jsPatternsDemo',
 .config([
         '$urlRouterProvider', '$stateProvider', '$mdThemingProvider',
         function($urlRouterProvider, $stateProvider, $mdThemingProvider) {
-            // $stateProvider
-            // .state('home', {
-            //     url: '/',
-            //     templateUrl: 'homeView/homeView.tpl.html',
-            //     controller: 'HomeViewCtrl'
-            // });
+            $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: 'home/home.tpl.html',
+                controller: 'HomeCtrl',
+                controllerAs: 'ctrl'
+            })
+            .state('constructor-pattern', {
+                url: '/constructor-pattern',
+                templateUrl: 'patterns/constructorPattern/constructorPattern.tpl.html',
+                controller: 'ConstructorPatternCtrl',
+                controllerAs: 'ctrl'
+            });
 
-            // $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/');
             
 
             $mdThemingProvider.theme('default')
@@ -36,18 +43,22 @@ angular.module('jsPatternsDemo',
             var vm = this;
 
             vm.patterns = [
-                'Constructor'
+                { name: 'Constructor', state: 'constructor-pattern' }
             ];
         }
     ]
 )
 .controller('ToolbarCtrl', 
     [
-        '$mdSidenav',
-        function($mdSidenav) {
+        '$mdSidenav', '$state',
+        function($mdSidenav, $state) {
             var vm = this;
 
             vm.compomentName = "Toolbar";
+
+            vm.isHome = function isHome() {
+                return $state.is('home');
+            };
 
             vm.showNav = function showNav() {
                 $mdSidenav('patterns').toggle();

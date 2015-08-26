@@ -33,6 +33,8 @@
 
     <!-- App JS -->
     <script src="app.js"></script>
+    <script src="home/home.js"></script>
+    <script src="patterns/constructorPattern/constructorPattern.js"></script>
 
 </head>
 <body ng-app="jsPatternsDemo" layout="column">
@@ -42,7 +44,8 @@
             <md-button hide-gt-md class="md-icon-button" aria-label="Menu" ng-click="ctrl.showNav()">
                 <i class="material-icons icon-button-adjust">menu</i>
             </md-button>
-            <h2><span><a ui-sref="home">JS Patterns Demo</a></span></h2>
+            <h2 ng-if="!isHome()"><span><a ui-sref="home">JS Patterns Demo</a></span></h2>
+            <h2 ng-if="isHome()"><span>JS Patterns Demo</span></h2>
         </div>
     </md-toolbar>
 
@@ -53,7 +56,7 @@
                     <div flex>
                         <md-list>
                             <md-item ng-repeat="p in ctrl.patterns">
-                                <h3 class="patterns-list-item">{{p}}</h3>
+                                <h3 class="patterns-list-item" ui-sref="{{p.state}}"><span>{{p.name}}</span></h3>
                             </md-item>
                         </md-list>
                     </div>
