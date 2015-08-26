@@ -1,0 +1,22 @@
+<md-content layout-padding layout="column">
+    <div layout="row">
+        <md-content layout-padding layout="row" layout-sm="column" flex>
+            <md-input-container>
+                <label>Year</label>
+                <input ng-model="crl.year" type="number">
+            </md-input-container>
+            <md-input-container>
+                <label>Model</label>
+                <input ng-model="ctrl.model">
+            </md-input-container>
+            <md-input-container>
+                <label>Mileage</label>
+                <input ng-model="ctrl.mileage" type="number">
+            </md-input-container>
+            <div flex></div>
+            <md-button class="md-fab md-accent" aria-label="Add new car">
+                <i class="material-icons icon-button-adjust">add</i>
+            </md-button>
+        </md-content>
+    </div>
+</md-content>
