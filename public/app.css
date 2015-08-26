@@ -5,3 +5,8 @@
 .patterns-list-item {
     margin: 20px;
 }
+
+.patterns-list-item > span {
+    cursor: pointer;
+    cursor: hand;
+}
