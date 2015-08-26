@@ -36,9 +36,7 @@ angular.module('jsPatternsDemo',
             var vm = this;
 
             vm.patterns = [
-                'Factory',
-                'Decorator',
-                'Visitor'
+                'Constructor'
             ];
         }
     ]
