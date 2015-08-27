@@ -3,7 +3,7 @@
         <md-content layout-padding layout="row" layout-sm="column" flex>
             <md-input-container>
                 <label>Year</label>
-                <input ng-model="crl.year" type="number">
+                <input ng-model="ctrl.year" type="number">
             </md-input-container>
             <md-input-container>
                 <label>Model</label>
@@ -14,9 +14,20 @@
                 <input ng-model="ctrl.mileage" type="number">
             </md-input-container>
             <div flex></div>
-            <md-button class="md-fab md-accent" aria-label="Add new car">
+            <md-button class="md-fab md-accent" aria-label="Add new car" ng-click="ctrl.createNew(ctrl.model, ctrl.year, ctrl.mileage)">
                 <i class="material-icons icon-button-adjust">add</i>
             </md-button>
         </md-content>
+    </div>
+
+    <div layout="column">
+        <h2>List of added Cars</h2> 
+        <p>This uses <code>prototype.toString()</code> method to display values.</p>
+        <div class="spacer"></div>
+        <md-list>
+            <md-list-item ng-repeat="c in ctrl.cars">
+                <p> - {{c.toString()}}</p>
+            </md-list-item>
+        </md-list>
     </div>
 </md-content>

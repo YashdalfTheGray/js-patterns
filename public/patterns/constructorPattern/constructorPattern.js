@@ -13,12 +13,13 @@ angular.module('jsPatternsDemo')
             }
 
             Car.prototype.toString = function() {
-                return this.model + '(' + this.year + ') has done ' + this.mileage + ' miles.';
+                return 'This ' + this.year + ' ' + this.model + ' has driven ' + this.mileage + ' miles.';
             };
 
             vm.cars = [];
 
             vm.createNew = function createNew(model, year, mileage) {
+                console.log('Incoming data: ', model, year, mileage);
                 vm.cars.push(new Car(model, year, mileage));
             };
         }
