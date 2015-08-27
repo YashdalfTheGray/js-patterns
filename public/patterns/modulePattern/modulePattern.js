@@ -13,7 +13,7 @@ angular.module('jsPatternsDemo')
 
                 // private methods
                 function getId() {
-                    return Math.random() * (999999 - 100000) + 100000;
+                    return Math.floor(Math.random() * (999999 - 100000) + 100000);
                 }
 
                 return {
@@ -27,28 +27,35 @@ angular.module('jsPatternsDemo')
                             _id: getId(),
                             title: title
                         });
-                        console.log(list);
                     },
-                    remove: function addTodoItem(title) {
+                    remove: function removeTodoItem(title) {
                         _.remove(list, function(n) {
                             return n.title === title;
                         });
-                        console.log(list);
                     },
                     getAllItems: function getAllTodoItems() {
-                        var result;
+                        var result = [];
 
                         _.forEach(list, function(item) {
                             result.push(item.title);
                         });
 
-                        console.log(list);
-                        console.log(result);
-
                         return result;
                     }
                 };
             })();
+
+            vm.todoList = vm.todoModule.getAllItems();
+
+            vm.addItem = function addItem(title) {
+                vm.todoModule.add(title);
+                vm.todoList = vm.todoModule.getAllItems();
+            };
+
+            vm.removeItem = function removeItem(title) {
+                vm.todoModule.remove(title);
+                vm.todoList = vm.todoModule.getAllItems();
+            };
         }
     ]
 );
