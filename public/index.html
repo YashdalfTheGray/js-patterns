@@ -35,6 +35,7 @@
     <script src="app.js"></script>
     <script src="home/home.js"></script>
     <script src="patterns/constructorPattern/constructorPattern.js"></script>
+    <script src="patterns/modulePattern/modulePattern.js"></script>
 
 </head>
 <body ng-app="jsPatternsDemo" layout="column">
@@ -56,7 +57,7 @@
                     <div flex>
                         <md-list>
                             <md-item ng-repeat="p in ctrl.patterns">
-                                <h3 class="patterns-list-item" ui-sref="{{p.state}}"><span>{{p.name}}</span></h3>
+                                <h3 class="patterns-list-item"><span ng-click="ctrl.goTo(p.state)">{{p.name}}</span></h3>
                             </md-item>
                         </md-list>
                     </div>

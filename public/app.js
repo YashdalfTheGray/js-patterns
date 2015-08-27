@@ -15,14 +15,17 @@ angular.module('jsPatternsDemo',
             .state('home', {
                 url: '/',
                 templateUrl: 'home/home.tpl.html',
-                controller: 'HomeCtrl',
-                controllerAs: 'ctrl'
+                controller: 'HomeCtrl as ctrl'
             })
             .state('constructor-pattern', {
                 url: '/constructor-pattern',
                 templateUrl: 'patterns/constructorPattern/constructorPattern.tpl.html',
-                controller: 'ConstructorPatternCtrl',
-                controllerAs: 'ctrl'
+                controller: 'ConstructorPatternCtrl as ctrl'
+            })
+            .state('module-pattern', {
+                url: '/module-pattern',
+                templateUrl: 'patterns/modulePattern/modulePattern.tpl.html',
+                controller: 'ModulePatternCtrl as ctrl'
             });
 
             $urlRouterProvider.otherwise('/');
@@ -39,11 +42,20 @@ angular.module('jsPatternsDemo',
 ])
 .controller('SidebarCtrl', 
     [
-        function() {
+        '$mdSidenav', '$state',
+        function($mdSidenav, $state) {
             var vm = this;
 
+            vm.goTo = function goToState(state) {
+                $state.go(state);
+                if(!$mdSidenav('patterns').isLockedOpen()) {
+                    $mdSidenav('patterns').close();
+                }
+            };
+
             vm.patterns = [
-                { name: 'Constructor', state: 'constructor-pattern' }
+                { name: 'Constructor', state: 'constructor-pattern' },
+                { name: 'Module', state: 'module-pattern' }
             ];
         }
     ]
