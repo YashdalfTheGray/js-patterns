@@ -22,3 +22,7 @@
 .spacer-lg {
     margin: 20px;
 }
+
+.wrap-break-word {
+    word-wrap: break-word;
+}
