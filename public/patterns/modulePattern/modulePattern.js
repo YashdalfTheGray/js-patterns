@@ -9,39 +9,47 @@ angular.module('jsPatternsDemo')
             vm.todoModule = (function() {
 
                 // private variables
-                var list = [];
+                var pList = [];
+
+                // public variables
+                var pModuleName = 'Simple Todo';
+                var pModuleVersion = '0.1.0';
 
                 // private methods
                 function getId() {
                     return Math.floor(Math.random() * (999999 - 100000) + 100000);
                 }
 
+                // public methods
+                function addTodoItem(title) {
+                    pList.push({
+                        _id: getId(),
+                        title: title
+                    });
+                }
+                
+                function removeTodoItem(title) {
+                    _.remove(pList, function(n) {
+                        return n.title === title;
+                    });
+                }
+
+                function getAllTodoItems() {
+                    var result = [];
+
+                    _.forEach(pList, function(item) {
+                        result.push(item.title);
+                    });
+
+                    return result;
+                }
+
                 return {
-                    // public variables
-                    moduleName: 'Simple Todo',
-                    moduleVersion: '0.1.0',
-
-                    // public methods
-                    add: function addTodoItem(title) {
-                        list.push({
-                            _id: getId(),
-                            title: title
-                        });
-                    },
-                    remove: function removeTodoItem(title) {
-                        _.remove(list, function(n) {
-                            return n.title === title;
-                        });
-                    },
-                    getAllItems: function getAllTodoItems() {
-                        var result = [];
-
-                        _.forEach(list, function(item) {
-                            result.push(item.title);
-                        });
-
-                        return result;
-                    }
+                    moduleName: pModuleName,
+                    moduleVersion: pModuleVersion,
+                    add: addTodoItem,
+                    remove: removeTodoItem,
+                    getAllItems: getAllTodoItems
                 };
             })();
 
