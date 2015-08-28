@@ -1,3 +1,22 @@
 <md-content layout-padding layout="column">
     <h2 flex>Singleton Pattern</h2>
+    <h3 flex>{{ctrl.rng.moduleName}} {{ctrl.rng.moduleVersion}}</h3>
+    
+    <div flex>
+        <md-button class="md-raised md-accent" ng-click="ctrl.getNumber()">Get Number</md-button>
+    </div>
+
+    <div class="spacer-md"></div>
+
+    <div flex>Generated random number - {{ctrl.number}}</div>
+
+    <div class="spacer-md"></div>
+
+    <div flex>Generated Numbers</div>
+    <md-list flex>
+        <md-list-item ng-repeat="n in ctrl.rng.numberList" layout="row">
+            <div class="spacer-md"></div>
+            {{n}}
+        </md-list-item>
+    </md-list>
 </md-content>
