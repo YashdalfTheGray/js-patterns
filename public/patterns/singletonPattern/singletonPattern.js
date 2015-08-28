@@ -21,7 +21,7 @@ angular.module('jsPatternsDemo')
 
                     function getAnotherNumber() {
                         var num = Math.floor(Math.random() * 999999);
-                        pNumList = push(num);
+                        pNumList.push(num);
                         return num;
                     }
 
@@ -45,7 +45,13 @@ angular.module('jsPatternsDemo')
 
             })();
 
-            vm.rng = randomNumGen.getinstance();
+            vm.rng = vm.randomNumGen.getinstance();
+            vm.number = vm.rng.getAnother();
+
+            vm.getNumber = function() {
+                vm.rng = vm.randomNumGen.getinstance();
+                vm.number = vm.rng.getAnother();
+            };
         }
     ]
 );
