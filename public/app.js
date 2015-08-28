@@ -55,7 +55,7 @@ angular.module('jsPatternsDemo',
 
             vm.patterns = [
                 { name: 'Constructor', state: 'constructor-pattern' },
-                { name: 'Module', state: 'module-pattern' }
+                { name: 'Revealing Module', state: 'module-pattern' }
             ];
         }
     ]
