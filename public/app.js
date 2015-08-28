@@ -26,6 +26,11 @@ angular.module('jsPatternsDemo',
                 url: '/module-pattern',
                 templateUrl: 'patterns/modulePattern/modulePattern.tpl.html',
                 controller: 'ModulePatternCtrl as ctrl'
+            })
+            .state('singleton-pattern', {
+                url: '/singleton-pattern',
+                templateUrl: 'patterns/singletonPattern/singletonPattern.tpl.html',
+                controller: 'SingletonPatternCtrl as ctrl'
             });
 
             $urlRouterProvider.otherwise('/');
@@ -55,7 +60,8 @@ angular.module('jsPatternsDemo',
 
             vm.patterns = [
                 { name: 'Constructor', state: 'constructor-pattern' },
-                { name: 'Revealing Module', state: 'module-pattern' }
+                { name: 'Revealing Module', state: 'module-pattern' },
+                { name: 'Singleton', state: 'singleton-pattern' }
             ];
         }
     ]
