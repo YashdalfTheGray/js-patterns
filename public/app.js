@@ -27,6 +27,11 @@ angular.module('jsPatternsDemo',
                 templateUrl: 'patterns/modulePattern/modulePattern.tpl.html',
                 controller: 'ModulePatternCtrl as ctrl'
             })
+            .state('observer-pattern', {
+                url: '/observer-pattern',
+                templateUrl: 'patterns/observerPattern/observerPattern.tpl.html',
+                controller: 'ObserverPatternCtrl as ctrl'
+            })
             .state('singleton-pattern', {
                 url: '/singleton-pattern',
                 templateUrl: 'patterns/singletonPattern/singletonPattern.tpl.html',
@@ -61,6 +66,7 @@ angular.module('jsPatternsDemo',
             vm.patterns = [
                 { name: 'Constructor', state: 'constructor-pattern' },
                 { name: 'Revealing Module', state: 'module-pattern' },
+                { name: 'Observer', state: 'observer-pattern' },
                 { name: 'Singleton', state: 'singleton-pattern' }
             ];
         }
