@@ -1,3 +1,19 @@
 <md-content layout-padding>
     <h2 flex>Observer Pattern</h2>
+
+    <md-content flex>
+        <h3>Subject checkbox</h3>
+        <md-checkbox ng-model="ctrl.subjectCheckbox.isChecked" ng-click="ctrl.notifyObservers()" aria-label="Subject Checkbox">
+            Check this box to notify observers
+        </md-checkbox>
+    </md-content>
+
+    <md-content flex>
+        <h3>Add observers</h3>
+    </md-content>
+
+    <md-content flex>
+        <h3>List of observers</h3>
+    </md-content>
+
 </md-content>
