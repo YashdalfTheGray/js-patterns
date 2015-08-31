@@ -7,7 +7,8 @@ angular.module('jsPatternsDemo')
             var vm = this;
 
             vm.moduleName = "Checkbox notifier";
-            vm.moduleVersion = "0.1.0"
+            vm.moduleVersion = "0.1.0";
+            vm.observerChoice = 'normal';
             vm.subjectCheckbox = {
                 isChecked: false
             };
@@ -16,7 +17,6 @@ angular.module('jsPatternsDemo')
                 for(var key in extention) {
                     obj[key] = extention[key];
                 }
-                console.log(obj);
             }
 
             function ObserverList() {
@@ -58,10 +58,9 @@ angular.module('jsPatternsDemo')
             };
 
             Subject.prototype.notify = function(context) {
-                if(this.observers.length > 0) {
-                    _.forEach(this.observers, function(item) {
-                        item.update(context);
-                    });
+                var observerCount = this.observers.count();
+                for (var i = 0; i < observerCount; i++) {
+                    this.observers.get(i).update(context);
                 }
             };
 
@@ -74,8 +73,38 @@ angular.module('jsPatternsDemo')
             extend(vm.subjectCheckbox, new Subject());
 
             vm.notifyObservers = function() {
+                console.log(vm.subjectCheckbox);
                 vm.subjectCheckbox.notify(vm.subjectCheckbox.isChecked);
             }
+
+            vm.addObserver = function(type) {
+                if (type === 'normal') {
+                    var obs = {
+                        isChecked: false
+                    };
+                    extend(obs, new Observer());
+
+                    obs.update = function(context) {
+                        this.isChecked = context;
+                        console.log(this.isChecked);
+                    }
+
+                    vm.subjectCheckbox.addObserver(obs);
+                }
+                else if (type === 'inverted') {
+                    var obs = {
+                        isChecked: true
+                    };
+                    extend(obs, new Observer());
+
+                    obs.update = function(context) {
+                        this.isChecked = !context;
+                        console.log(this.isChecked);
+                    }
+
+                    vm.subjectCheckbox.addObserver(obs);
+                }
+            } 
         }
     ]
 );
