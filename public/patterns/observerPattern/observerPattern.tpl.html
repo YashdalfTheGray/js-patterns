@@ -3,13 +3,20 @@
 
     <md-content flex>
         <h3>Subject checkbox</h3>
-        <md-checkbox ng-model="ctrl.subjectCheckbox.isChecked" ng-click="ctrl.notifyObservers()" aria-label="Subject Checkbox">
+        <md-checkbox ng-model="ctrl.subjectCheckbox.isChecked" ng-change="ctrl.notifyObservers()" aria-label="Subject Checkbox">
             Check this box to notify observers
         </md-checkbox>
     </md-content>
 
     <md-content flex>
         <h3>Add observers</h3>
+        <md-radio-group ng-model="ctrl.observerChoice" layout="row" layout-sm="column">
+            <md-radio-button value="normal">Normal observer</md-radio-button>
+            <md-radio-button value="inverted">Inverted observer</md-radio-button>
+        </md-radio-group>
+        <p>
+            <md-button class="md-raised md-accent" ng-click="ctrl.addObserver(ctrl.observerChoice)" type="button">Add</md-button>
+        </p>
     </md-content>
 
     <md-content flex>
