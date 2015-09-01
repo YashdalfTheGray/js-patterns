@@ -3,12 +3,14 @@
 angular.module('jsPatternsDemo')
 .controller('ObserverPatternCtrl', 
     [
-        function() {
+        '$mdToast',
+        function($mdToast) {
             var vm = this;
 
             vm.moduleName = "Checkbox notifier";
             vm.moduleVersion = "0.1.0";
             vm.observerChoice = 'normal';
+            vm.toastObserverCount = 0;
             vm.subjectCheckbox = {
                 isChecked: false
             };
@@ -74,7 +76,7 @@ angular.module('jsPatternsDemo')
 
             vm.notifyObservers = function() {
                 vm.subjectCheckbox.notify(vm.subjectCheckbox.isChecked);
-            }
+            };
 
             vm.addObserver = function(type) {
                 if (type === 'normal') {
@@ -87,8 +89,6 @@ angular.module('jsPatternsDemo')
                     obs.update = function(context) {
                         this.isChecked = context;
                     }
-
-                    vm.subjectCheckbox.addObserver(obs);
                 }
                 else if (type === 'inverted') {
                     var obs = {
@@ -100,10 +100,36 @@ angular.module('jsPatternsDemo')
                     obs.update = function(context) {
                         this.isChecked = !context;
                     }
-
-                    vm.subjectCheckbox.addObserver(obs);
                 }
-            } 
+                else if(type === 'toast') {
+                    var obs = {
+                        isChecked: false,
+                        type: 'Toast observer'
+                    };
+                    extend(obs, new Observer());
+
+                    obs.update = function(context) {
+                        this.isChecked = context;
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content('Subject Checkbox value changed to ' + context)
+                            .position('bottom right')
+                            .hideDelay(3000)
+                        );
+                    }
+                    vm.toastObserverCount++;
+                    vm.observerChoice = 'normal';
+                }
+
+                vm.subjectCheckbox.addObserver(obs);
+            };
+
+            vm.removeObserver = function(obs) {
+                if(obs.type === 'Toast observer') {
+                    vm.toastObserverCount--;
+                }
+                vm.subjectCheckbox.removeObserver(obs);
+            }
         }
     ]
 );

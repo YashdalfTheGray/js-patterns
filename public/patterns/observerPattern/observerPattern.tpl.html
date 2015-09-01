@@ -13,6 +13,7 @@
         <md-radio-group ng-model="ctrl.observerChoice" layout="row" layout-sm="column">
             <md-radio-button value="normal">Normal observer</md-radio-button>
             <md-radio-button value="inverted">Inverted observer</md-radio-button>
+            <md-radio-button value="toast" ng-disabled="ctrl.toastObserverCount > 0">Toast observer</md-radio-button>
         </md-radio-group>
         <p>
             <md-button class="md-raised md-accent" ng-click="ctrl.addObserver(ctrl.observerChoice)" type="button">Add</md-button>
@@ -24,7 +25,7 @@
         <md-list>
             <md-list-item ng-repeat="o in ctrl.subjectCheckbox.observers.observerList">
                 <div layout="row">
-                    <md-button class="md-icon-button md-accent" aria-label="Remove observer" ng-click="ctrl.subjectCheckbox.removeObserver(o)">
+                    <md-button class="md-icon-button md-accent" aria-label="Remove observer" ng-click="ctrl.removeObserver(o)">
                         <i class="material-icons icon-button-adjust">clear</i>
                     </md-button>
                     <div class="spacer-md"></div>
