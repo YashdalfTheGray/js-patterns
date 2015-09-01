@@ -26,3 +26,7 @@
 .wrap-break-word {
     word-wrap: break-word;
 }
+
+.label-fix > div.md-label {
+    padding-top: 4px;
+}
