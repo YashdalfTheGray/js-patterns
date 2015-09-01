@@ -73,33 +73,32 @@ angular.module('jsPatternsDemo')
             extend(vm.subjectCheckbox, new Subject());
 
             vm.notifyObservers = function() {
-                console.log(vm.subjectCheckbox);
                 vm.subjectCheckbox.notify(vm.subjectCheckbox.isChecked);
             }
 
             vm.addObserver = function(type) {
                 if (type === 'normal') {
                     var obs = {
-                        isChecked: false
+                        isChecked: false,
+                        type: 'Normal observer'
                     };
                     extend(obs, new Observer());
 
                     obs.update = function(context) {
                         this.isChecked = context;
-                        console.log(this.isChecked);
                     }
 
                     vm.subjectCheckbox.addObserver(obs);
                 }
                 else if (type === 'inverted') {
                     var obs = {
-                        isChecked: true
+                        isChecked: true,
+                        type: 'Inverted observer'
                     };
                     extend(obs, new Observer());
 
                     obs.update = function(context) {
                         this.isChecked = !context;
-                        console.log(this.isChecked);
                     }
 
                     vm.subjectCheckbox.addObserver(obs);

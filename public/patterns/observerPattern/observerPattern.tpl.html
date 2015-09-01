@@ -21,6 +21,19 @@
 
     <md-content flex>
         <h3>List of observers</h3>
+        <md-list>
+            <md-list-item ng-repeat="o in ctrl.subjectCheckbox.observers.observerList">
+                <div layout="row">
+                    <md-button class="md-icon-button md-accent" aria-label="Remove observer" ng-click="ctrl.subjectCheckbox.removeObserver(o)">
+                        <i class="material-icons icon-button-adjust">clear</i>
+                    </md-button>
+                    <div class="spacer-md"></div>
+                    <md-checkbox class="label-fix" ng-model="o.isChecked" aria-label="Observer" ng-disabled="true">
+                        {{o.type}}
+                    </md-checkbox>
+                </div>
+            </md-list-item>
+        </md-list>
     </md-content>
 
 </md-content>
