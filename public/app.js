@@ -72,7 +72,7 @@ angular.module('jsPatternsDemo',
                 { name: 'Constructor', state: 'constructor-pattern' },
                 { name: 'Revealing Module', state: 'module-pattern' },
                 { name: 'Observer', state: 'observer-pattern' },
-                { name: 'Prototype', state: 'prototype-pattern'}
+                { name: 'Prototype', state: 'prototype-pattern'},
                 { name: 'Singleton', state: 'singleton-pattern' }
             ];
         }
