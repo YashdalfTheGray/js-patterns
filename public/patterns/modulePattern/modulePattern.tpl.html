@@ -3,9 +3,9 @@
 
     <div layout="row" flex>
         <md-content layout="row" layout-sm="column" flex>
-            <md-input-container flex>
+            <md-input-container flex id="title-input-container">
                 <label>Add an item</label>
-                <input ng-model="ctrl.title">
+                <input ng-model="ctrl.title" id="title-input">
             </md-input-container>
             <div class="spacer-lg" show-sm hide-gt-sm></div>
             <md-button class="md-fab md-accent" aria-label="Add an item" ng-click="ctrl.addItem(ctrl.title)">

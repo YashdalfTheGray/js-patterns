@@ -3,7 +3,8 @@
 angular.module('jsPatternsDemo')
 .controller('ModulePatternCtrl',
     [
-        function() {
+        'mdClearInput',
+        function(mdClearInput) {
             var vm = this;
 
             vm.todoModule = (function() {
@@ -58,6 +59,8 @@ angular.module('jsPatternsDemo')
             vm.addItem = function addItem(title) {
                 vm.todoModule.add(title);
                 vm.todoList = vm.todoModule.getAllItems();
+                mdClearInput.clearInputBox('title-input');
+
             };
 
             vm.removeItem = function removeItem(title) {
