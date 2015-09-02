@@ -1,3 +1,38 @@
 <md-content layout-padding>
     <h2 flex>Prototype Pattern</h2>
+
+    <div class="spacer-md"></div>
+
+    <h3 flex>Add a new car</h3>
+    <md-content layout-padding layout="row" layout-sm="column" flex>
+        <md-input-container id="year-input-container">
+            <label>Year</label>
+            <input ng-model="ctrl.year" type="number" id="year-input">
+        </md-input-container>
+        <md-input-container id="make-input-container">
+            <label>Make</label>
+            <input ng-model="ctrl.make" id="make-input">
+        </md-input-container>
+        <md-input-container id="model-input-container">
+            <label>Model</label>
+            <input ng-model="ctrl.model"id="model-input">
+        </md-input-container>
+        <md-button class="md-fab md-accent" aria-label="Add new car" ng-click="ctrl.addCar(ctrl.year, ctrl.make, ctrl.model)">
+            <i class="material-icons icon-button-adjust">add</i>
+        </md-button>
+    </md-content>
+
+    <div class="spacer-lg"></div>
+
+    <md-content flex>
+        <h3>List of cars added</h3>
+        <p>The generic car model has already been added to the list and is also used as the prototype for all the new cars created above.</p>
+        <div class="spacer-sm"></div>
+        <md-list>
+            <md-list-item ng-repeat="c in ctrl.cars track by $index">
+                {{$index + 1}}) {{c.details()}}
+            </md-list-item>
+        </md-list>
+    </md-content>
+
 </md-content>
