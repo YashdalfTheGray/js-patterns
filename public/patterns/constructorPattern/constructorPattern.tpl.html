@@ -2,17 +2,17 @@
     <h2 flex>Constructor Pattern</h2>
     <div layout="row">
         <md-content layout-padding layout="row" layout-sm="column" flex>
-            <md-input-container>
+            <md-input-container id="year-input-container">
                 <label>Year</label>
-                <input ng-model="ctrl.year" type="number">
+                <input ng-model="ctrl.year" type="number" id="year-input">
             </md-input-container>
-            <md-input-container>
+            <md-input-container id="model-input-container">
                 <label>Model</label>
-                <input ng-model="ctrl.model">
+                <input ng-model="ctrl.model" id="model-input">
             </md-input-container>
-            <md-input-container>
+            <md-input-container id="mileage-input-container">
                 <label>Mileage</label>
-                <input ng-model="ctrl.mileage" type="number">
+                <input ng-model="ctrl.mileage" type="number" id="mileage-input">
             </md-input-container>
             <div flex></div>
             <md-button class="md-fab md-accent" aria-label="Add new car" ng-click="ctrl.createNew(ctrl.model, ctrl.year, ctrl.mileage)">

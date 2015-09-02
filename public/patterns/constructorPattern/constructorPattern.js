@@ -3,7 +3,8 @@
 angular.module('jsPatternsDemo')
 .controller('ConstructorPatternCtrl', 
     [
-        function() {
+        'mdClearInput',
+        function(mdClearInput) {
             var vm = this;
 
             function Car(model, year, mileage) {
@@ -19,8 +20,8 @@ angular.module('jsPatternsDemo')
             vm.cars = [];
 
             vm.createNew = function createNew(model, year, mileage) {
-                console.log('Incoming data: ', model, year, mileage);
                 vm.cars.push(new Car(model, year, mileage));
+                mdClearInput.clearInputBoxes(['year-input', 'model-input', 'mileage-input']);
             };
         }
     ]
