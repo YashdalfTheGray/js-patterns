@@ -17,6 +17,11 @@ angular.module('jsPatternsDemo',
                 templateUrl: 'home/home.tpl.html',
                 controller: 'HomeCtrl as ctrl'
             })
+            .state('command-pattern', {
+                url: '/command-pattern',
+                templateUrl: 'patterns/commandPattern/commandPattern.tpl.html',
+                controller: 'CommandPatternCtrl as ctrl'
+            })
             .state('constructor-pattern', {
                 url: '/constructor-pattern',
                 templateUrl: 'patterns/constructorPattern/constructorPattern.tpl.html',
@@ -100,6 +105,7 @@ angular.module('jsPatternsDemo',
             };
 
             vm.patterns = [
+                { name: 'Command', state: 'command-pattern' },
                 { name: 'Constructor', state: 'constructor-pattern' },
                 { name: 'Revealing Module', state: 'module-pattern' },
                 { name: 'Observer', state: 'observer-pattern' },
