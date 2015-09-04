@@ -1,3 +1,25 @@
 <md-content layout-padding>
     <h2 flex>Command Pattern</h2>
+
+    <md-content flex ng-show="ctrl.contentLoaded">
+        <h3>Item Shop</h3>
+            <md-radio-group ng-model="ctrl.itemChoice" layout="column">
+            <md-radio-button ng-repeat="i in ctrl.items" value="{{i.$id}}">
+                {{i.title}}<span class="spacer-sm"></span>({{i.quantity}})
+            </md-radio-button>
+        </md-radio-group>
+        <div class="spacer-md"></div>
+        <div layout="row">
+            <md-button class="md-raised md-accent" ng-click="ctrl.inventory.execute('buy', ctrl.itemChoice, $event)" flex>
+                Buy
+            </md-button>
+            <md-button class="md-raised md-accent" ng-click="ctrl.inventory.execute('use', ctrl.itemChoice, $event)"flex>
+                Use
+            </md-button>
+            <md-button class="md-raised md-accent" ng-click="ctrl.inventory.execute('details', ctrl.itemChoice, $event)" flex>
+                Details
+            </md-button>
+        </div>
+    </md-content>
+
 </md-content>
