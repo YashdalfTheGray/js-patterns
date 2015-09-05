@@ -1,3 +1,26 @@
 <md-content layout-padding>
     <h2 flex>Facade Pattern</h2>
+
+    <md-content flex>
+        <h3>Auto Quote</h3>
+        <md-content layout-padding layout="row" layout-sm="column" flex>
+            <md-input-container id="name-input-container">
+                <label>Name</label>
+                <input ng-model="ctrl.name" id="name-input">
+            </md-input-container>
+            <md-input-container id="age-input-container">
+                <label>Age</label>
+                <input ng-model="ctrl.age" type="number" id="age-input">
+            </md-input-container>
+            <div flex></div>
+            <md-button class="md-fab md-accent" aria-label="Get Quote" ng-click="ctrl.getQuote(ctrl.name, ctrl.age)">
+                <i class="material-icons icon-button-adjust">done</i>
+            </md-button>
+        </md-content>
+
+        <div class="spacer-md"></div>
+
+        <p>Your auto insurance quote is ${{ctrl.printCurrency(ctrl.quote)}}!</p> 
+    </md-content>
+
 </md-content>
