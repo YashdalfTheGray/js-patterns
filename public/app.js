@@ -27,6 +27,11 @@ angular.module('jsPatternsDemo',
                 templateUrl: 'patterns/constructorPattern/constructorPattern.tpl.html',
                 controller: 'ConstructorPatternCtrl as ctrl'
             })
+            .state('facade-pattern', {
+                url: '/facade-pattern',
+                templateUrl: 'patterns/facadePattern/facadePattern.tpl.html',
+                controller: 'FacadePatternCtrl as ctrl'
+            })
             .state('module-pattern', {
                 url: '/module-pattern',
                 templateUrl: 'patterns/modulePattern/modulePattern.tpl.html',
@@ -107,6 +112,7 @@ angular.module('jsPatternsDemo',
             vm.patterns = [
                 { name: 'Command', state: 'command-pattern' },
                 { name: 'Constructor', state: 'constructor-pattern' },
+                { name: 'Facade', state: 'facade-pattern' },
                 { name: 'Revealing Module', state: 'module-pattern' },
                 { name: 'Observer', state: 'observer-pattern' },
                 { name: 'Prototype', state: 'prototype-pattern'},
