@@ -1,3 +1,24 @@
 <md-content layout-padding>
     <h2 flex>Factory Pattern</h2>
+
+    <md-content flex>
+        <h3>The Shape Factory</h3>
+
+        <p>Create a new shape</p>
+        <md-radio-group ng-model="ctrl.shapeChoice" layout="row">
+            <md-radio-button value="rectangle">Rectangle</md-radio-button>
+            <md-radio-button value="circle">Circle</md-radio-button>
+        </md-radio-group>
+        <md-button class="md-raised md-accent" ng-click="ctrl.addShape()" type="button">Add</md-button>
+
+        <div class="spacer-md"></div>
+
+        <p>Already created shapes</p>
+        <md-list>
+            <md-list-item ng-repeat="s in ctrl.shapes">
+                <p>{{s.toString()}}</p>
+            </md-list-item>
+        </md-list>
+    </md-content>
+
 </md-content>
