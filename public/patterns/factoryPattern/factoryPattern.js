@@ -17,10 +17,10 @@ angular.module('jsPatternsDemo')
                 this.y = options.y || 0;
 
                 this.area = function() {
-                    return this.h * this.l;
+                    return Math.round((this.h * this.l) * 100000) / 100000;
                 };
                 this.perimeter = function() {
-                    return 2 * (this.h + this.l);
+                    return Math.round((2 * (this.h + this.l)) * 100000) / 100000;
                 };
                 this.center = function() {
                     return '(' + this.x + ', ' + this.y + ')';
