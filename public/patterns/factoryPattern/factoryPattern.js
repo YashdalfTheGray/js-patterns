@@ -3,8 +3,11 @@
 angular.module('jsPatternsDemo')
 .controller('FactoryPatternCtrl', 
     [
-        function() {
+        'mdClearInput',
+        function(mdClearInput) {
             var vm = this;
+
+            vm.shapeChoice = 'rectangle';
 
             function Rectangle(options) {
                 this.type = 'rectangle';
@@ -34,10 +37,10 @@ angular.module('jsPatternsDemo')
                 this.y = options.y || 0;
 
                 this.area = function() {
-                    return Math.round((Math.PI * this.r * this.r) * 100) / 100;
+                    return Math.round((Math.PI * this.r * this.r) * 100000) / 100000;
                 };
                 this.perimeter = function() {
-                    return Math.round((2 * Math.PI * this.r) * 100) / 100;
+                    return Math.round((2 * Math.PI * this.r) * 100000) / 100000;
                 };
                 this.center = function() {
                     return '(' + this.x + ', ' + this.y + ')';
@@ -70,9 +73,33 @@ angular.module('jsPatternsDemo')
             vm.shapes = [];
 
             vm.addShape = function() {
-                vm.shapes.push(vm.shapeFactory.createShape({
-                    type: vm.shapeChoice
-                }));
+                var newShape;
+                if (vm.customize) {
+                    newShape = vm.shapeFactory.createShape({
+                        type: vm.shapeChoice,
+                        l: vm.length,
+                        h: vm.height,
+                        r: vm.radius,
+                        x: vm.centerX,
+                        y: vm.centerY
+                    });
+                    mdClearInput.clearInputBoxes([
+                        'length-input',
+                        'height-input',
+                        'radius-input',
+                        'centerx-input',
+                        'centery-input'
+                    ]);
+                    vm.length = undefined;
+                    vm.height = undefined;
+                    vm.radius = undefined;
+                    vm.centerX = undefined;
+                    vm.centerY = undefined;
+                }
+                else {
+                    newShape = vm.shapeFactory.createShape({ type: vm.shapeChoice });
+                }
+                vm.shapes.push(newShape);
             };
         }
     ]

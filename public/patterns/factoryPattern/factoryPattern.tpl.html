@@ -9,11 +9,40 @@
             <md-radio-button value="rectangle">Rectangle</md-radio-button>
             <md-radio-button value="circle">Circle</md-radio-button>
         </md-radio-group>
+        <md-checkbox ng-model="ctrl.customize" aria-label="Customize Shape">
+            Customize your shape?
+        </md-checkbox>
+        <md-content layout-padding layout="row" flex ng-show="ctrl.customize && ctrl.shapeChoice === 'rectangle'">
+            <md-input-container id="length-input-container">
+                <label>Length</label>
+                <input ng-model="ctrl.length" type="number" id="length-input">
+            </md-input-container>
+            <md-input-container id="height-input-container">
+                <label>Height</label>
+                <input ng-model="ctrl.height" type="number" id="height-input">
+            </md-input-container>
+        </md-content>
+        <md-content layout-padding layout="row" flex ng-show="ctrl.customize && ctrl.shapeChoice === 'circle'">
+            <md-input-container id="radius-input-container">
+                <label>Radius</label>
+                <input ng-model="ctrl.radius" type="number" id="radius-input">
+            </md-input-container>
+        </md-content>
+        <md-content layout-padding layout="row" flex ng-show="ctrl.customize">
+            <md-input-container id="centerx-input-container">
+                <label>Center X</label>
+                <input ng-model="ctrl.centerX" type="number" id="centerx-input">
+            </md-input-container>
+            <md-input-container id="centery-input-container">
+                <label>Center Y</label>
+                <input ng-model="ctrl.centerY" type="number" id="centery-input">
+            </md-input-container>
+        </md-content>
         <md-button class="md-raised md-accent" ng-click="ctrl.addShape()" type="button">Add</md-button>
 
-        <div class="spacer-md"></div>
+        <div class="spacer-lg"></div>
 
-        <p>Already created shapes</p>
+        <h3>Created shapes</h3>
         <md-list>
             <md-list-item ng-repeat="s in ctrl.shapes">
                 <p>{{s.toString()}}</p>
