@@ -17,6 +17,11 @@ angular.module('jsPatternsDemo',
                 templateUrl: 'home/home.tpl.html',
                 controller: 'HomeCtrl as ctrl'
             })
+            .state('abstract-factory-pattern', {
+                url: '/abstract-factory-pattern',
+                templateUrl: 'patterns/abstractFactoryPattern/abstractFactoryPattern.tpl.html',
+                controller: 'AbstractFactoryPatternCtrl as ctrl'
+            })
             .state('command-pattern', {
                 url: '/command-pattern',
                 templateUrl: 'patterns/commandPattern/commandPattern.tpl.html',
@@ -115,6 +120,7 @@ angular.module('jsPatternsDemo',
             };
 
             vm.patterns = [
+                { name: 'Abstract Factory', state: 'abstract-factory-pattern' },
                 { name: 'Command', state: 'command-pattern' },
                 { name: 'Constructor', state: 'constructor-pattern' },
                 { name: 'Facade', state: 'facade-pattern' },
