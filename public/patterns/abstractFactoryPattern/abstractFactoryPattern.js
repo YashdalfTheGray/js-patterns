@@ -115,6 +115,28 @@ angular.module('jsPatternsDemo')
                     }
                 }
             }
+
+            vm.abstractShapeFactory = (function() {
+                var types = {};
+
+                return {
+                    get: function(type, options) {
+                        var Shape = types[type];
+
+                        return (Shape ? new Shape(options) : null);
+                    },
+                    register: function(type, Shape) {
+                        if(Shape.prototype.area && Shape.prototype.perimeter) {
+                            types[type] = Shape;
+                        }
+
+                        return abstractShapeFactory;
+                    }
+                }
+            })();
+
+            vm.abstractShapeFactory.register('rectangle', Rectangle);
+            vm.abstractShapeFactory.register('circle', Circle);
         }
     ]
 );
