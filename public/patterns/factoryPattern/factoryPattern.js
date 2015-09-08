@@ -9,6 +9,10 @@ angular.module('jsPatternsDemo')
 
             vm.shapeChoice = 'rectangle';
 
+            function formatNumber(number) {
+                return Math.round(number * 100000) / 100000;
+            }
+
             function Rectangle(options) {
                 this.type = 'rectangle';
                 this.h = options.h || 1;
@@ -17,10 +21,10 @@ angular.module('jsPatternsDemo')
                 this.y = options.y || 0;
 
                 this.area = function() {
-                    return Math.round((this.h * this.l) * 100000) / 100000;
+                    return formatNumber(this.h * this.l);
                 };
                 this.perimeter = function() {
-                    return Math.round((2 * (this.h + this.l)) * 100000) / 100000;
+                    return formatNumber(2 * (this.h + this.l));
                 };
                 this.center = function() {
                     return '(' + this.x + ', ' + this.y + ')';
@@ -37,10 +41,10 @@ angular.module('jsPatternsDemo')
                 this.y = options.y || 0;
 
                 this.area = function() {
-                    return Math.round((Math.PI * this.r * this.r) * 100000) / 100000;
+                    return formatNumber(Math.PI * this.r * this.r);
                 };
                 this.perimeter = function() {
-                    return Math.round((2 * Math.PI * this.r) * 100000) / 100000;
+                    return formatNumber(2 * Math.PI * this.r);
                 };
                 this.center = function() {
                     return '(' + this.x + ', ' + this.y + ')';
