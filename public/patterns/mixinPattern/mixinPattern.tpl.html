@@ -1,3 +1,46 @@
 <md-content layout-padding>
     <h2 flex>Mixin Pattern</h2>
+
+    <md-content flex>
+        <h3>Phone Adminstration</h3>
+
+        <p>Add a phone</p>
+        <md-radio-group ng-model="ctrl.phoneChoice" layout="row">
+            <md-radio-button value="android">Android</md-radio-button>
+            <md-radio-button value="ios">iOS</md-radio-button>
+        </md-radio-group>
+        <md-content layout-padding layout="row" layout-sm ="column" flex>
+            <md-input-container id="manufacturer-input-container" ng-show="ctrl.phoneChoice === 'android'">
+                <label>Manufacturer</label>
+                <input ng-model="ctrl.manufacturer" id="manufacturer-input">
+            </md-input-container>
+            <md-input-container id="model-input-container">
+                <label>Model</label>
+                <input ng-model="ctrl.model" id="model-input">
+            </md-input-container>
+            <md-input-container id="osversion-input-container">
+                <label>OS Version</label>
+                <input ng-model="ctrl.osVersion" id="osversion-input">
+            </md-input-container>
+        </md-content>
+        
+        <md-button class="md-raised md-accent" ng-click="ctrl.addPhone()" type="button">Add</md-button>
+
+        <h3>Registered Phones</h3>
+        <md-list>
+            <md-list-item ng-repeat="p in ctrl.phones">
+                <md-card flex>
+                    <md-card-content>
+                        <h4 class="md-title">{{p.model}}</h4>
+                        <p>This {{p.manufacturer}} {{p.model}} is running {{p.osVersion}}.</p>
+                    </md-card-content>
+                    <div class="md-actions" layout="row" layout-align="end center">
+                        <md-button ng-click="p.lock()">Lock</md-button>
+                        <md-button ng-click="p.track()">Track</md-button>
+                        <md-button ng-click="p.wipe()">Wipe</md-button>
+                    </div>
+                    </md-card>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </md-content>

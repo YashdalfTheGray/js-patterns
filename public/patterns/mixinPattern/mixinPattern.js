@@ -3,8 +3,12 @@
 angular.module('jsPatternsDemo')
 .controller('MixinPatternCtrl', 
     [
-        function() {
+        'mdClearInput',
+        function(mdClearInput) {
             var vm = this;
+
+            vm.phones = [];
+            vm.phoneChoice = 'android';
 
             function getLat() {
                 var num = (Math.random() * 90).toFixed(7);
@@ -43,8 +47,25 @@ angular.module('jsPatternsDemo')
             _.assign(AndroidDevice.prototype, PhoneAdminMixins);
             _.assign(IOSDevice.prototype, PhoneAdminMixins);
 
-            vm.adev = new AndroidDevice({ manufacturer: 'Motorola', model: 'Nexus 6', osVersion: 'Android 5.1.1' });
-            vm.idev = new IOSDevice({ model: 'iPhone 6 Plus', osVersion: 'iOS 8.1.4' });
+            vm.phones.push(new AndroidDevice({ manufacturer: 'Motorola', model: 'Nexus 6', osVersion: 'Android 5.1.1' }));
+            vm.phones.push(new IOSDevice({ model: 'iPhone 6 Plus', osVersion: 'iOS 8.1.4' }));
+
+            vm.addPhone = function() {
+                if (vm.phoneChoice === 'android') {
+                    vm.phones.push(new AndroidDevice({
+                        manufacturer: vm.manufacturer,
+                        model: vm.model, 
+                        osVersion: vm.osVersion 
+                    }));
+                }
+                else if (vm.phoneChoice === 'ios') {
+                    vm.phones.push(new IOSDevice({
+                        model: vm.model,
+                        osVersion: vm.osVersion
+                    }));
+                }
+                mdClearInput.clearInputBoxes(['manufacturer-input', 'model-input', 'osversion-input']);
+            }
         }
     ]
 );
