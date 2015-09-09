@@ -42,6 +42,11 @@ angular.module('jsPatternsDemo',
                 templateUrl: 'patterns/factoryPattern/factoryPattern.tpl.html',
                 controller: 'FactoryPatternCtrl as ctrl'
             })
+            .state('mixin-pattern', {
+                url: '/mixin-pattern',
+                templateUrl: 'patterns/mixinPattern/mixinPattern.tpl.html',
+                controller: 'MixinPatternCtrl as ctrl'
+            })
             .state('module-pattern', {
                 url: '/module-pattern',
                 templateUrl: 'patterns/modulePattern/modulePattern.tpl.html',
@@ -125,7 +130,8 @@ angular.module('jsPatternsDemo',
                 { name: 'Constructor', state: 'constructor-pattern' },
                 { name: 'Facade', state: 'facade-pattern' },
                 { name: 'Factory', state: 'factory-pattern' },
-                { name: 'Revealing Module', state: 'module-pattern' },
+                { name: 'Mixin', state: 'mixin-pattern' },
+                { name: 'Module', state: 'module-pattern' },
                 { name: 'Observer', state: 'observer-pattern' },
                 { name: 'Prototype', state: 'prototype-pattern'},
                 { name: 'Singleton', state: 'singleton-pattern' }
