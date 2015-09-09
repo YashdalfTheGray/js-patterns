@@ -30,3 +30,7 @@
 .label-fix > div.md-label {
     padding-top: 4px;
 }
+
+.scroll-container {
+    overflow: scroll;
+}
