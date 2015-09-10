@@ -32,6 +32,11 @@ angular.module('jsPatternsDemo',
                 templateUrl: 'patterns/constructorPattern/constructorPattern.tpl.html',
                 controller: 'ConstructorPatternCtrl as ctrl'
             })
+            .state('decorator-pattern', {
+                url: '/decorator-pattern',
+                templateUrl: 'patterns/decoratorPattern/decoratorPattern.tpl.html',
+                controller: 'DecoratorPatternCtrl as ctrl'
+            })
             .state('facade-pattern', {
                 url: '/facade-pattern',
                 templateUrl: 'patterns/facadePattern/facadePattern.tpl.html',
@@ -128,6 +133,7 @@ angular.module('jsPatternsDemo',
                 { name: 'Abstract Factory', state: 'abstract-factory-pattern' },
                 { name: 'Command', state: 'command-pattern' },
                 { name: 'Constructor', state: 'constructor-pattern' },
+                { name: 'Decorator', state: 'decorator-pattern' },
                 { name: 'Facade', state: 'facade-pattern' },
                 { name: 'Factory', state: 'factory-pattern' },
                 { name: 'Mixin', state: 'mixin-pattern' },
