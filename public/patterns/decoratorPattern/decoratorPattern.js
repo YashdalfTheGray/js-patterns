@@ -23,15 +23,15 @@ angular.module('jsPatternsDemo')
                 this.display = {
                     size: 13.3,
                     resolution: '1920x1200'
-                }
+                };
                 this.video = {
                     memory: 2,
                     units: 'GB',
                     type: 'Integrated'
-                }
+                };
                 this.cost = function() {
                     return 700.00;
-                }
+                };
             }
         }
     ]
