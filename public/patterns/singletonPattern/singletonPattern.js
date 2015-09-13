@@ -4,6 +4,7 @@ angular.module('jsPatternsDemo')
 .controller('SingletonPatternCtrl',
     [
         function() {
+            "use strict";
             var vm = this;
 
             vm.randomNumGen = (function() {

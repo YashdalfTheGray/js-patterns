@@ -5,6 +5,7 @@ angular.module('jsPatternsDemo')
     [
         'mdClearInput',
         function(mdClearInput) {
+            "use strict";
             var vm = this;
             vm.cars = [];
 
@@ -17,7 +18,7 @@ angular.module('jsPatternsDemo')
                         return 'This is a generic car.';
                     }
                 }
-            }
+            };
 
             vm.cars.push(vm.car);
 
