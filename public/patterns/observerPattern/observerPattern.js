@@ -1,10 +1,12 @@
 /* global angular */
+/* global _ */
 
 angular.module('jsPatternsDemo')
 .controller('ObserverPatternCtrl', 
     [
         '$mdToast',
         function($mdToast) {
+            "use strict";
             var vm = this;
 
             vm.moduleName = "Checkbox notifier";
@@ -17,7 +19,9 @@ angular.module('jsPatternsDemo')
 
             function extend(obj, extention) {
                 for(var key in extention) {
-                    obj[key] = extention[key];
+                    if (extention.hasOwnProperty(key)) {
+                        obj[key] = extention[key];
+                    }
                 }
             }
 
@@ -67,9 +71,9 @@ angular.module('jsPatternsDemo')
             };
 
             function Observer() {
-                this.update = function(context) {
+                this.update = function() {
                     // this will be overwritten later on
-                }
+                };
             }
 
             extend(vm.subjectCheckbox, new Subject());
@@ -79,8 +83,9 @@ angular.module('jsPatternsDemo')
             };
 
             vm.addObserver = function(type) {
+                var obs;
                 if (type === 'normal') {
-                    var obs = {
+                    obs = {
                         isChecked: false,
                         type: 'Normal observer'
                     };
@@ -88,10 +93,10 @@ angular.module('jsPatternsDemo')
 
                     obs.update = function(context) {
                         this.isChecked = context;
-                    }
+                    };
                 }
                 else if (type === 'inverted') {
-                    var obs = {
+                    obs = {
                         isChecked: true,
                         type: 'Inverted observer'
                     };
@@ -99,10 +104,10 @@ angular.module('jsPatternsDemo')
 
                     obs.update = function(context) {
                         this.isChecked = !context;
-                    }
+                    };
                 }
                 else if(type === 'toast') {
-                    var obs = {
+                    obs = {
                         isChecked: false,
                         type: 'Toast observer'
                     };
@@ -116,7 +121,7 @@ angular.module('jsPatternsDemo')
                             .position('bottom right')
                             .hideDelay(3000)
                         );
-                    }
+                    };
                     vm.toastObserverCount++;
                     vm.observerChoice = 'normal';
                 }
@@ -129,7 +134,7 @@ angular.module('jsPatternsDemo')
                     vm.toastObserverCount--;
                 }
                 vm.subjectCheckbox.removeObserver(obs);
-            }
+            };
         }
     ]
 );
