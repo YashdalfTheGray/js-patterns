@@ -85,7 +85,7 @@ angular.module('jsPatternsDemo')
                 vm.flavors[vm.ordersMade] = vm.flavorFactory.getCoffeeFlavor(flavorIn);
                 vm.tables[vm.ordersMade] = new CoffeeOrderContext(table);
                 vm.ordersMade++;
-            }
+            };
         }
     ]
 );
