@@ -4,6 +4,17 @@ This projects catalogs the Javascript patterns from Addy Osmani's book called [E
 
 The project is hosted on Firebase and also uses Firebase as the database server. The app can be accessed [here](https://js-patterns.firebaseapp.com/).
 
+This project depends on the following npm modules:
+* `firebase-tools`
+* `gulp`
+* `gulp-util`
+* `chalk`
+* `jshint`
+* `gulp-jshint`
+* `jshint-stylish-ex`
+
+They can be installed by running `npm install` from the project root.
+
 ## Helpful Links
 
 * [The Book](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#introduction)
