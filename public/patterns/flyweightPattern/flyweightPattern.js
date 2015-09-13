@@ -84,7 +84,7 @@ angular.module('jsPatternsDemo')
             vm.timers = [];
 
             vm.getRandomDuration = function() {
-                return 100 * Math.round(((Math.random() * 2) + 10) * 10);
+                return 100 * Math.round(((Math.random() * 3) + 1) * 10);
             };
 
             vm.takeOrders = function(flavorIn, table) {
