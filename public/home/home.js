@@ -4,7 +4,7 @@ angular.module('jsPatternsDemo')
 .controller('HomeCtrl', 
     [
         function() {
-            var vm = this;
+            "use strict";
         }
     ]
 );

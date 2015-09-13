@@ -1,4 +1,5 @@
 /* global angular */
+/* global _ */
 
 angular.module('jsPatternsDemo', 
     [
@@ -11,6 +12,7 @@ angular.module('jsPatternsDemo',
 .config([
         '$urlRouterProvider', '$stateProvider', '$mdThemingProvider',
         function($urlRouterProvider, $stateProvider, $mdThemingProvider) {
+            "use strict";
             $stateProvider
             .state('home', {
                 url: '/',
@@ -88,6 +90,7 @@ angular.module('jsPatternsDemo',
 .factory('mdClearInput', 
     [
         function() {
+            "use strict";
 
             function clearInput(inputId) {
                 var inputBox = document.getElementById(inputId);
@@ -104,7 +107,7 @@ angular.module('jsPatternsDemo',
                     });
                 }
                 else if (_.isString(inputIdArray)) {
-                    clearInput(inputIdArray)
+                    clearInput(inputIdArray);
                 }
             }
 
@@ -120,6 +123,7 @@ angular.module('jsPatternsDemo',
     [
         '$mdSidenav', '$state',
         function($mdSidenav, $state) {
+            "use strict";
             var vm = this;
 
             vm.goTo = function goToState(state) {
@@ -149,6 +153,7 @@ angular.module('jsPatternsDemo',
     [
         '$mdSidenav', '$state',
         function($mdSidenav, $state) {
+            "use strict";
             var vm = this;
 
             vm.compomentName = "Toolbar";
