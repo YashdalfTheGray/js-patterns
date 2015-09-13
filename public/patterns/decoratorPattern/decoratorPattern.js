@@ -8,10 +8,10 @@ angular.module('jsPatternsDemo')
             
             function Laptop() {
                 this.processor = function() {
-                    return 2.0
+                    return 2.5;
                 };
                 this.memory = function() {
-                    return 4;
+                    return 8;
                 };
                 this.storage = function() {
                     return 128;
@@ -23,7 +23,7 @@ angular.module('jsPatternsDemo')
                     return 13.3;
                 };
                 this.cost = function() {
-                    return 700.00;
+                    return 900;
                 };
             }
 
@@ -33,7 +33,7 @@ angular.module('jsPatternsDemo')
                     var c = laptop.cost();
 
                     laptop.processor = function() {
-                        return p + 0.5;
+                        return p + 0.7;
                     };
 
                     laptop.cost = function() {
@@ -45,7 +45,7 @@ angular.module('jsPatternsDemo')
                     var c = laptop.cost();
 
                     laptop.memory = function() {
-                        return m + 4;
+                        return m + 8;
                     };
 
                     laptop.cost = function() {
