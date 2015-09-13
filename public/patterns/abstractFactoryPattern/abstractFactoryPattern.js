@@ -4,6 +4,7 @@ angular.module('jsPatternsDemo')
 .controller('AbstractFactoryPatternCtrl',
     [
         function() {
+            "use strict";
             var vm = this;
 
             vm.shapes = [];
@@ -60,13 +61,13 @@ angular.module('jsPatternsDemo')
             Triangle.prototype.area = function() {
                 var s = 0.5 * this.perimeter();
                 return formatNumber(Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c)));
-            }
+            };
             Triangle.prototype.perimeter = function() {
                 return formatNumber(this.a + this.b + this.c);
-            }
+            };
             Triangle.prototype.toString = function() {
                 return 'This triangle has side lengths ' + this.a + ', ' + this.b + ' and ' + this.c + '. The area is ' + this.area() + ' and the perimeter is ' + this.perimeter() + '.';
-            }
+            };
 
             function Parallelogram(options) {
                 this.a = options.a || 1;
@@ -75,26 +76,26 @@ angular.module('jsPatternsDemo')
             }
             Parallelogram.prototype.area = function() {
                 return formatNumber(this.b * this.h);
-            }
+            };
             Parallelogram.prototype.perimeter = function() {
                 return formatNumber(2 * (this.a + this.b));
-            }
+            };
             Parallelogram.prototype.toString = function() {
                 return 'This Parallelogram has side lengths ' + this.a + ', ' + this.b + ' and height ' + this.h + '. The area is ' + this.area() + ' and the perimeter is ' + this.perimeter() + '.';
-            }
+            };
 
             function Square(options) {
                 this.a = options.a || 1;
             }
             Square.prototype.area = function() {
                 return formatNumber(this.a * this.a);
-            }
+            };
             Square.prototype.perimeter = function() {
                 return formatNumber(4 * this.a);
-            }
+            };
             Square.prototype.toString = function() {
                 return 'This Square has side length ' + this.a + '. The area is ' + this.area() + ' and the perimeter is ' + this.perimeter() + '.';
-            }
+            };
 
             vm.abstractShapeFactory = (function() {
                 var types = {};
@@ -111,7 +112,7 @@ angular.module('jsPatternsDemo')
                         }
                         return vm.abstractShapeFactory;
                     }
-                }
+                };
             })();
 
             vm.abstractShapeFactory.register('rectangle', Rectangle);
@@ -152,7 +153,7 @@ angular.module('jsPatternsDemo')
                         vm.shapeTypes[4].reg = true;
                         break;
                 }
-            }
+            };
         }
     ]
 );

@@ -1,10 +1,13 @@
 /* global angular */
+/* global Firebase */
+/* global _ */
 
 angular.module('jsPatternsDemo')
 .controller('CommandPatternCtrl', 
     [
-        '$firebaseArray', '$mdToast', '$mdDialog',
-        function($firebaseArray, $mdToast, $mdDialog) {
+        '$firebaseArray', '$mdToast', /*'$mdDialog',*/
+        function($firebaseArray, $mdToast/*, $mdDialog*/) {
+            "use strict";
             var vm = this;
             var ref = new Firebase("https://js-patterns.firebaseio.com/command/items/");
 
@@ -41,7 +44,7 @@ angular.module('jsPatternsDemo')
                     }
                 }
 
-                function getItemDetails(itemId, ev) {
+                function getItemDetails(itemId) {
                     var item = items[findItemIndex(itemId)];
 
                     $mdToast.show(
@@ -64,7 +67,7 @@ angular.module('jsPatternsDemo')
                     buy: buyItem,
                     use: useItem,
                     details: getItemDetails 
-                }
+                };
                 inventoryManager.execute = function(name) {
                     return inventoryManager[name] && inventoryManager[name].apply(inventoryManager, [].slice.call(arguments, 1));
                 };
