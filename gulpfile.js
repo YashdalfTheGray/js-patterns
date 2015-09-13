@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 gulp.task('default', ['usage']);
 
 gulp.task('usage', function() {
+    "use strict";
     var usageLines = [
         '',
         '',
@@ -29,6 +30,7 @@ gulp.task('usage', function() {
 });
 
 gulp.task('jshint', function() {
+    "use strict";
     return gulp.src([
         'public/**/*.js',
         'gulpfile.js'
@@ -38,6 +40,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('clean:modules', function() {
+    "use strict";
     return del([
         'node_modules'
     ]);
