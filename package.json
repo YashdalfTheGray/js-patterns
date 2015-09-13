@@ -1,0 +1,33 @@
+{
+  "name": "js-patterns",
+  "version": "1.0.0",
+  "description": "a list of software patterns in javascript",
+  "main": "public/index.html",
+  "devDependencies": {
+    "chalk": "^1.1.1",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-util": "^3.0.6",
+    "jshint": "^2.8.0",
+    "jshint-stylish-ex": "^0.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YashdalfTheGray/js-patterns.git"
+  },
+  "keywords": [
+    "patterns",
+    "javascript",
+    "software"
+  ],
+  "author": "Yash Kulshrestha",
+  "license": "GPL v3",
+  "bugs": {
+    "url": "https://github.com/YashdalfTheGray/js-patterns/issues"
+  },
+  "homepage": "https://github.com/YashdalfTheGray/js-patterns"
+}
