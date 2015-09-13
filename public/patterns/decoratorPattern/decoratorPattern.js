@@ -1,9 +1,12 @@
 /* global angular */
+/* global _ */
 
 angular.module('jsPatternsDemo')
 .controller('DecoratorPatternCtrl', 
     [
         function() {
+            "use strict";
+            
             var vm = this;
             
             function Laptop() {
@@ -85,7 +88,7 @@ angular.module('jsPatternsDemo')
                         return c + 300;
                     };
                 }
-            }
+            };
 
             vm.appliedUpgrades = {
                 processor: false,
@@ -93,7 +96,7 @@ angular.module('jsPatternsDemo')
                 storage: false,
                 videoMemory: false,
                 displaySize: false
-            }
+            };
 
             vm.startOver = function() {
                 vm.currentBuild = new Laptop();
@@ -102,13 +105,13 @@ angular.module('jsPatternsDemo')
                         vm.appliedUpgrades[p] = false;
                     }
                 }
-            }
+            };
 
             vm.upgrade = function(upgrade, decorator, laptop) {
                 if (vm.appliedUpgrades[upgrade]) {
                     decorator(laptop);
                 }
-            }
+            };
 
             vm.format = function(key, value) {
                 if(!value) {
@@ -141,7 +144,7 @@ angular.module('jsPatternsDemo')
                 valueUnitStr = (keyStr === 'cost') ? unit + valueStr : valueStr + unit;
 
                 return _.startCase(keyStr) + ' - ' + valueUnitStr;
-            }
+            };
 
             vm.currentBuild = new Laptop();
         }
