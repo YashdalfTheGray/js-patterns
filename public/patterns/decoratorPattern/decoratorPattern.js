@@ -28,7 +28,7 @@ angular.module('jsPatternsDemo')
             }
 
             vm.upgrades = {
-                processor: function(latop) {
+                processor: function(laptop) {
                     var p = laptop.processor();
                     var c = laptop.cost();
 
@@ -63,7 +63,7 @@ angular.module('jsPatternsDemo')
                         return c + 400;
                     };
                 },
-                videoMemory: function() {
+                videoMemory: function(laptop) {
                     var v = laptop.videoMemory();
                     var c = laptop.cost();
 
@@ -72,20 +72,78 @@ angular.module('jsPatternsDemo')
                     };
                     laptop.cost = function() {
                         return c + 250;
-                    }
+                    };
                 },
-                displaySize: function() {
+                displaySize: function(laptop) {
                     var d = laptop.displaySize();
-                    var c = cost();
+                    var c = laptop.cost();
 
                     laptop.displaySize = function() {
                         return d + 2.3;
-                    }
+                    };
                     laptop.cost = function() {
                         return c + 300;
+                    };
+                }
+            }
+
+            vm.appliedUpgrades = {
+                processor: false,
+                memory: false,
+                storage: false,
+                videoMemory: false,
+                displaySize: false
+            }
+
+            vm.startOver = function() {
+                vm.currentBuild = new Laptop();
+                for (var p in vm.appliedUpgrades) {
+                    if (vm.appliedUpgrades.hasOwnProperty(p)) {
+                        vm.appliedUpgrades[p] = false;
                     }
                 }
             }
+
+            vm.upgrade = function(upgrade, decorator, laptop) {
+                if (vm.appliedUpgrades[upgrade]) {
+                    decorator(laptop);
+                }
+            }
+
+            vm.format = function(key, value) {
+                if(!value) {
+                    return _.startCase(key);
+                }
+
+                var unit = '';
+                var keyStr = key.toString();
+                var valueStr;
+                var valueUnitStr;
+
+                switch (keyStr) {
+                    case 'processor':
+                        unit = ' GHz';
+                        break;
+                    case 'memory':
+                    case 'storage':
+                    case 'videoMemory':
+                        unit = ' GB';
+                        break;
+                    case 'displaySize':
+                        unit = '"';
+                        break;
+                    case 'cost':
+                        unit = '$';
+                        break;
+                }
+
+                valueStr = (key === 'displaySize') ? (Math.round(value() * 10) / 10) : value();
+                valueUnitStr = (keyStr === 'cost') ? unit + valueStr : valueStr + unit;
+
+                return _.startCase(keyStr) + ' - ' + valueUnitStr;
+            }
+
+            vm.currentBuild = new Laptop();
         }
     ]
 );

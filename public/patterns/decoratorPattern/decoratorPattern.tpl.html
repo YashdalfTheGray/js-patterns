@@ -1,3 +1,23 @@
 <md-content layout-padding>
     <h2 flex>Decorator Pattern</h2>
+
+    <md-content flex>
+        <h3>Laptop configuration</h3>
+
+        <md-button class="md-raised md-accent" ng-click="ctrl.startOver()" type="button">Start Over</md-button>
+
+        <p>Available Upgrades</p>
+        <md-checkbox ng-repeat="(key, value) in ctrl.upgrades" ng-model="ctrl.appliedUpgrades[key]" ng-change="ctrl.upgrade(key, value, ctrl.currentBuild)" ng-disabled="ctrl.appliedUpgrades[key]">
+            {{ctrl.format(key)}}
+        </md-checkbox>
+
+        <div class="spacer-hg"></div>
+
+        <p>Current Configuration</p>
+        <md-list>
+            <md-list-item ng-repeat="(key, value) in ctrl.currentBuild">
+                {{ctrl.format(key, value)}}
+            </md-list-item>
+        </md-list>
+    </md-content>
 </md-content>
