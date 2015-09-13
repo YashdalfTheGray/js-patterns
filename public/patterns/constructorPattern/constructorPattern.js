@@ -5,6 +5,7 @@ angular.module('jsPatternsDemo')
     [
         'mdClearInput',
         function(mdClearInput) {
+            "use strict";
             var vm = this;
 
             function Car(model, year, mileage) {

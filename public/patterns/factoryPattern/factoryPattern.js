@@ -5,6 +5,7 @@ angular.module('jsPatternsDemo')
     [
         'mdClearInput',
         function(mdClearInput) {
+            "use strict";
             var vm = this;
 
             vm.shapeChoice = 'rectangle';

@@ -5,6 +5,7 @@ angular.module('jsPatternsDemo')
     [
         'mdClearInput',
         function(mdClearInput) {
+            "use strict";
             var vm = this;
 
             vm.autoQuoteMachine = (function() {
@@ -29,7 +30,7 @@ angular.module('jsPatternsDemo')
                         finalRate = _private.roundToNearestCent(finalRate);
                         return finalRate;
                     }
-                }
+                };
             })();
 
             vm.getQuote = function(name, age) {
@@ -65,7 +66,7 @@ angular.module('jsPatternsDemo')
                 else {
                     return '0.00';
                 }
-            }
+            };
         }
     ]
 );
