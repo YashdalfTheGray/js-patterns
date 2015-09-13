@@ -1,10 +1,12 @@
 /* global angular */
+/* global _ */
 
 angular.module('jsPatternsDemo')
 .controller('ModulePatternCtrl',
     [
         'mdClearInput',
         function(mdClearInput) {
+            "use strict";
             var vm = this;
 
             vm.todoModule = (function() {

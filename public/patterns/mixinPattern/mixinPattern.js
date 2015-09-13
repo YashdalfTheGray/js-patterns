@@ -1,10 +1,12 @@
 /* global angular */
+/* global _ */
 
 angular.module('jsPatternsDemo')
 .controller('MixinPatternCtrl', 
     [
         'mdClearInput',
         function(mdClearInput) {
+            "use strict";
             var vm = this;
 
             vm.phones = [];
@@ -65,7 +67,7 @@ angular.module('jsPatternsDemo')
                     }));
                 }
                 mdClearInput.clearInputBoxes(['manufacturer-input', 'model-input', 'osversion-input']);
-            }
+            };
         }
     ]
 );
