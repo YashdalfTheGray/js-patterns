@@ -3,7 +3,8 @@
 angular.module('jsPatternsDemo')
 .controller('FlyweightPatternCtrl', 
     [
-        function() {
+        '$timeout', '$scope',
+        function($timeout, $scope) {
             "use strict";
             var vm = this;
 
@@ -40,7 +41,7 @@ angular.module('jsPatternsDemo')
 
                 if (typeof this.serveCoffee === 'function') {
                     this.serveCoffee = function(context) {
-                        return 'Serving coffee flavor' + flavor + ' to table ' + context.getTable() + '.';
+                        return 'Serving coffee flavor ' + flavor + ' to table ' + context.getTable() + '.';
                     };
                 }
             }
@@ -75,17 +76,40 @@ angular.module('jsPatternsDemo')
                 };
             }
 
-            vm.flavors = new CoffeeFlavor();
-            vm.tables = new CoffeeOrderContext();
+            vm.flavors = [];
+            vm.tables = [];
             vm.ordersMade = 0;
             vm.flavorFactory = new CoffeeFlavorFactory();
             vm.servedLog = [];
+            vm.timers = [];
+
+            vm.getRandomDuration = function() {
+                return 100 * Math.round(((Math.random() * 2) + 10) * 10);
+            };
 
             vm.takeOrders = function(flavorIn, table) {
+                var timer;
+
                 vm.flavors[vm.ordersMade] = vm.flavorFactory.getCoffeeFlavor(flavorIn);
                 vm.tables[vm.ordersMade] = new CoffeeOrderContext(table);
+
+                timer = $timeout(vm.flavors[vm.ordersMade].serveCoffee, vm.getRandomDuration(), true, vm.tables[vm.ordersMade]);
+                timer.then(function(result) {
+                    vm.servedLog.push(result);
+                },
+                function() {
+                    console.log('Coffee order canceled.');
+                });
+                vm.timers.push(timer);
+
                 vm.ordersMade++;
             };
+
+            $scope.$on('$destroy', function() {
+                for (var i = 0; i < vm.timers.length; i++) {
+                    $timeout.cancel(vm.timers[i]);
+                }
+            });
         }
     ]
 );
