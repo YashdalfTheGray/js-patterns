@@ -3,8 +3,8 @@
 angular.module('jsPatternsDemo')
 .controller('FlyweightPatternCtrl', 
     [
-        '$timeout', '$scope',
-        function($timeout, $scope) {
+        '$timeout', '$scope', 'mdClearInput',
+        function($timeout, $scope, mdClearInput) {
             "use strict";
             var vm = this;
 
@@ -103,6 +103,8 @@ angular.module('jsPatternsDemo')
                 vm.timers.push(timer);
 
                 vm.ordersMade++;
+
+                mdClearInput.clearInputBoxes(['flavor-input', 'table-input']);
             };
 
             $scope.$on('$destroy', function() {
