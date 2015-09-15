@@ -1,3 +1,28 @@
 <md-content layout-padding>
     <h2 flex>Flyweight Pattern</h2>
+
+    <md-content flex>
+        <h3>Order coffee</h3>
+        <md-content layout-padding layout="row" layout-sm ="column">
+            <md-input-container id="flavor-input-container">
+                <label>Coffee flavor</label>
+                <input ng-model="ctrl.flavorIn" id="flavor-input">
+            </md-input-container>
+            <md-input-container id="table-input-container">
+                <label>Table number</label>
+                <input ng-model="ctrl.tableIn" id="table-input">
+            </md-input-container>
+
+            <md-button class="md-fab md-accent" aria-label="Order coffee" ng-click="ctrl.takeOrders(ctrl.flavorIn, ctrl.tableIn)">
+                <i class="material-icons icon-button-adjust">check</i>
+            </md-button>
+        </md-content>
+
+        <h3>Served Orders</h3>
+
+        <md-list>
+            <md-list-item ng-show="ctrl.servedLog.length === 0">No orders served yet</md-list-item>
+            <md-list-item ng-show="ctrl.servedLog.length !== 0" ng-repeat="o in ctrl.servedLog">{{o}}</md-list-item>
+        </md-list>
+    </md-content>
 </md-content>
