@@ -78,6 +78,11 @@ angular.module('jsPatternsDemo',
                 url: '/singleton-pattern',
                 templateUrl: 'patterns/singletonPattern/singletonPattern.tpl.html',
                 controller: 'SingletonPatternCtrl as ctrl'
+            })
+            .state('visitor-pattern', {
+                url: '/visitor-pattern',
+                templateUrl: 'patterns/visitorPattern/visitorPattern.tpl.html',
+                controller: 'VisitorPatternCtrl as ctrl'
             });
 
             $urlRouterProvider.otherwise('/');
@@ -150,7 +155,8 @@ angular.module('jsPatternsDemo',
                 { name: 'Module', state: 'module-pattern' },
                 { name: 'Observer', state: 'observer-pattern' },
                 { name: 'Prototype', state: 'prototype-pattern'},
-                { name: 'Singleton', state: 'singleton-pattern' }
+                { name: 'Singleton', state: 'singleton-pattern' },
+                { name: 'Visitor', state: 'visitor-pattern'}
             ];
         }
     ]
