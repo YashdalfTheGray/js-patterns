@@ -4,6 +4,7 @@ angular.module('jsPatternsDemo')
 .controller('VisitorPatternCtrl',
     [
         function() {
+            "use strict";
             var vm = this;
 
             function Employee(name, salary, vacation) {
