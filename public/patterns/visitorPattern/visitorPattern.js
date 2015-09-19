@@ -50,6 +50,26 @@ angular.module('jsPatternsDemo')
                     employee.setVacation(employee.getVacation + 5);
                 };
             }
+            function PrintDetails() {
+                this.visit = function(employee) {
+                    return employee.getName() + ' makes $' + employee.getSalary() + ' and has ' + employee.getVacation() + ' days of vacation.';
+                };
+            }
+
+            vm.salaryVisitor = new ExtraSalary();
+            vm.vacationVisitor = new ExtraVacation();
+            vm.printVisitor = new PrintDetails();
+
+            vm.employees = [
+                new Employee('John Doe', 45000, 10),
+                new Employee('Jane Smith', 48000, 10)
+            ];
+
+            vm.addEmployee = function(name) {
+                var randomSalary = Math.round((Math.random() * 20) + 45) * 1000;
+                var randomVacation = Math.round((Math.random() * 5) + 10);
+                vm.employees.push(new Employee(name, randomSalary, randomVacation));
+            };
         }
     ]
 );
