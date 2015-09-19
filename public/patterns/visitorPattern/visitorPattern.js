@@ -3,7 +3,8 @@
 angular.module('jsPatternsDemo')
 .controller('VisitorPatternCtrl',
     [
-        function() {
+        'mdClearInput',
+        function(mdClearInput) {
             "use strict";
             var vm = this;
 
@@ -11,7 +12,7 @@ angular.module('jsPatternsDemo')
                 var self = this;
 
                 this.accept = function(visitor) {
-                    visitor.visit(self);
+                    return visitor.visit(self);
                 };
 
                 this.getName = function() {
@@ -41,13 +42,13 @@ angular.module('jsPatternsDemo')
 
             function ExtraSalary() {
                 this.visit = function(employee) {
-                    employee.setSalary(employee.getSalary() * 1.2);
+                    employee.setSalary(Math.round(employee.getSalary() * 1.2));
                 };
             }
 
             function ExtraVacation() {
                 this.visit = function(employee) {
-                    employee.setVacation(employee.getVacation + 5);
+                    employee.setVacation(employee.getVacation() + 5);
                 };
             }
             function PrintDetails() {
@@ -69,7 +70,9 @@ angular.module('jsPatternsDemo')
                 var randomSalary = Math.round((Math.random() * 20) + 45) * 1000;
                 var randomVacation = Math.round((Math.random() * 5) + 10);
                 vm.employees.push(new Employee(name, randomSalary, randomVacation));
+                mdClearInput.clearInputBox('empname-input');
             };
+            console.log(vm.employees);
         }
     ]
 );

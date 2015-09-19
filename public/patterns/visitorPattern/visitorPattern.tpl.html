@@ -1,3 +1,38 @@
 <md-content layout-padding>
     <h2 flex>Visitor Pattern</h2>
+
+    <md-content flex>
+        <h3>Employee Management</h3>
+        <md-list>
+            <md-list-item ng-repeat="e in ctrl.employees">
+                {{e.accept(ctrl.printVisitor)}}
+            </md-list-item>
+            <md-list-item layout="row">
+                <md-input-container class="new-employee-align" id="empname-input-container">
+                    <label>Employee Name</label>
+                    <input ng-model="ctrl.empName" id="empname-input">
+                </md-input-container>
+                <md-button class="md-raised md-accent" ng-click="ctrl.addEmployee(ctrl.empName)">Add</md-button>
+            </md-list-item>
+        </md-list>
+
+        <div class="spacer-lg"></div>
+
+        <h3>Modify Employees</h3>
+
+        <md-input-container>
+            <label>Employee</label>
+            <md-select ng-model="ctrl.selectedEmployee">
+                <md-option ng-repeat="e in ctrl.employees track by $index" ng-value="e">{{e.getName()}}</md-option>
+            </md-select>
+        </md-input-container>
+        <div layout="row">
+            <md-button class="md-raised md-accent" ng-click="ctrl.selectedEmployee.accept(ctrl.salaryVisitor)" ng-disabled="!ctrl.selectedEmployee">
+                Extra Salary
+            </md-button>
+            <md-button class="md-raised md-accent" ng-click="ctrl.selectedEmployee.accept(ctrl.vacationVisitor)" ng-disabled="!ctrl.selectedEmployee">
+                Extra Vacation
+            </md-button>
+        </div>
+    </md-content>
 </md-content>
