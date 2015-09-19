@@ -38,3 +38,7 @@
 .scroll-container {
     overflow: scroll;
 }
+
+.new-employee-align {
+    padding-left: 16px;
+}
