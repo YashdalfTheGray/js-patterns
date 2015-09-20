@@ -1,6 +1,6 @@
-<md-content layout-padding layout="column">
+<md-content layout-padding>
     <h2 flex>Constructor Pattern</h2>
-    <div layout="row">
+    <md-content flex>
         <md-content layout-padding layout="row" layout-sm="column" flex>
             <md-input-container id="year-input-container">
                 <label>Year</label>
@@ -18,9 +18,7 @@
                 <i class="material-icons icon-button-adjust">add</i>
             </md-button>
         </md-content>
-    </div>
 
-    <div layout="column" flex>
         <h3>List of added Cars</h3> 
         <p>This uses <code>prototype.toString()</code> method to display values.</p>
         <div class="spacer"></div>
@@ -29,5 +27,5 @@
                 <p> - {{c.toString()}}</p>
             </md-list-item>
         </md-list>
-    </div>
+    </md-content>
 </md-content>
