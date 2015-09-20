@@ -59,7 +59,7 @@
             <h2 ng-if="!ctrl.isHome()"><span><a ui-sref="home">JS Patterns Demo</a></span></h2>
             <h2 ng-if="ctrl.isHome()"><span>JS Patterns Demo</span></h2>
             <div flex></div>
-            <md-button class="md-icon-button" ng-click="ctrl.infoClick()">
+            <md-button class="md-icon-button" ng-click="ctrl.infoClick()" ng-hide="ctrl.isHome()">
                 <i class="material-icons icon-button-adjust" ng-show="!ctrl.infoShowing">info_outline</i>
                 <i class="material-icons icon-button-adjust" ng-show="ctrl.infoShowing">info</i>
             </md-button>
