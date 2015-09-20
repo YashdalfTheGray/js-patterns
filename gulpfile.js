@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     chalk = require('chalk'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish-ex'),
-    del = require('del');
+    del = require('del'),
+    exec = require('child_process').exec;
 
 
 gulp.task('default', ['usage']);
@@ -19,6 +20,10 @@ gulp.task('usage', function() {
         '',
         chalk.green('jshint'),
         '\tRun jshint on the spec and the js folder under src.',
+        '',
+        chalk.green('deploy'),
+        '\tUse firebase-tools to deploy the public folder to firebase hosting.',
+        '\tIf more information is needed, run ' + chalk.green('firebase deploy') + ' instead.',
         '',
         chalk.green('clean:modules'),
         '\tDeletes the npm_modules directory.',
@@ -44,4 +49,17 @@ gulp.task('clean:modules', function() {
     return del([
         'node_modules'
     ]);
+});
+
+gulp.task('deploy', function() {
+    "use strict";
+    exec('firebase deploy', function(err) {
+        if(err) {
+            gulp.log(chalk.red('Error encountered!'));
+            throw new gutil.PluginError('firebase', err);
+        }
+        else {
+            gutil.log(chalk.green('Successfully deployed') + ' at ' + chalk.cyan('https://js-patterns.firebaseapp.com'));
+        }
+    });
 });
