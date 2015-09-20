@@ -129,6 +129,29 @@ angular.module('jsPatternsDemo',
         }
     ]
 )
+.factory('infoButtonSvc',
+    [
+        '$rootScope',
+        function($rootScope) {
+            "use strict";
+
+            $rootScope.infoShowing = false;
+
+            function toggleInfo() {
+                $rootScope.infoShowing = !$rootScope.infoShowing;
+            }
+
+            function isInfoVisible() {
+                return $rootScope.infoShowing;
+            }
+
+            return {
+                toggleInfo: toggleInfo,
+                isInfoVisible: isInfoVisible
+            };
+        }
+    ]
+)
 .controller('SidebarCtrl', 
     [
         '$mdSidenav', '$state',
@@ -163,13 +186,13 @@ angular.module('jsPatternsDemo',
 )
 .controller('ToolbarCtrl', 
     [
-        '$mdSidenav', '$state',
-        function($mdSidenav, $state) {
+        '$mdSidenav', '$state', 'infoButtonSvc',
+        function($mdSidenav, $state, infoButtonSvc) {
             "use strict";
             var vm = this;
 
             vm.compomentName = "Toolbar";
-            vm.infoShowing = false;
+            vm.ibs = infoButtonSvc;
 
             vm.isHome = function isHome() {
                 return $state.is('home');
@@ -177,10 +200,6 @@ angular.module('jsPatternsDemo',
 
             vm.showNav = function showNav() {
                 $mdSidenav('patterns').toggle();
-            };
-
-            vm.infoClick = function infoClick() {
-                vm.infoShowing = !vm.infoShowing;
             };
         }
     ]
