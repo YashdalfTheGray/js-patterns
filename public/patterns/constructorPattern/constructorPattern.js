@@ -3,10 +3,12 @@
 angular.module('jsPatternsDemo')
 .controller('ConstructorPatternCtrl', 
     [
-        'mdClearInput',
-        function(mdClearInput) {
+        'mdClearInput', 'infoButtonSvc',
+        function(mdClearInput, infoButtonSvc) {
             "use strict";
             var vm = this;
+
+            vm.ibs = infoButtonSvc;
 
             function Car(model, year, mileage) {
                 this.model = model;

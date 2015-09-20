@@ -1,6 +1,6 @@
 <md-content layout-padding>
     <h2 flex>Constructor Pattern</h2>
-    <md-content flex>
+    <md-content flex ng-if="!ctrl.ibs.isInfoVisible()">
         <md-content layout-padding layout="row" layout-sm="column" flex>
             <md-input-container id="year-input-container">
                 <label>Year</label>
@@ -20,12 +20,18 @@
         </md-content>
 
         <h3>List of added Cars</h3> 
-        <p>This uses <code>prototype.toString()</code> method to display values.</p>
         <div class="spacer"></div>
         <md-list>
             <md-list-item ng-repeat="c in ctrl.cars">
                 <p> - {{c.toString()}}</p>
             </md-list-item>
         </md-list>
+    </md-content>
+
+    <md-content flex ng-if="ctrl.ibs.isInfoVisible()">
+        <p>The constructor pattern is fairly simple and is designed to work just like a constructor in other OO languages.</p>
+        <p>In this example, there is a <code>Car</code> constructor function which is used to add new <code>Car</code> objects to the list at the bottom of the demo.</p>
+        <p>Constructor functions in Javascript can also be used to specify common methods for all instances to use. This can be accomplished by adding member functions to the <code>prototype</code>. In this example, there is a <code>toString()</code> defined in <code>Car.prototype</code> which all instances of <code>Car</code> can use to display their values.
+        <p>The list at the end of the demo uses <code>Car.prototype.toString()</code> method to display values.</p>
     </md-content>
 </md-content>
