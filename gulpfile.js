@@ -44,13 +44,6 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('clean:modules', function() {
-    "use strict";
-    return del([
-        'node_modules'
-    ]);
-});
-
 gulp.task('deploy', function() {
     "use strict";
     exec('firebase deploy', function(err) {
@@ -62,4 +55,11 @@ gulp.task('deploy', function() {
             gutil.log(chalk.green('Successfully deployed') + ' at ' + chalk.cyan('https://js-patterns.firebaseapp.com'));
         }
     });
+});
+
+gulp.task('clean:modules', function() {
+    "use strict";
+    return del([
+        'node_modules'
+    ]);
 });
