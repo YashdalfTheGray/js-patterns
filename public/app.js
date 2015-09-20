@@ -169,6 +169,7 @@ angular.module('jsPatternsDemo',
             var vm = this;
 
             vm.compomentName = "Toolbar";
+            vm.infoShowing = false;
 
             vm.isHome = function isHome() {
                 return $state.is('home');
@@ -176,6 +177,10 @@ angular.module('jsPatternsDemo',
 
             vm.showNav = function showNav() {
                 $mdSidenav('patterns').toggle();
+            };
+
+            vm.infoClick = function infoClick() {
+                vm.infoShowing = !vm.infoShowing;
             };
         }
     ]
