@@ -1,6 +1,6 @@
 <md-content layout-padding>
     <h2 flex>Constructor Pattern</h2>
-    <md-content flex ng-if="!ctrl.ibs.isInfoVisible()">
+    <md-content flex ng-hide="ctrl.ibs.isInfoVisible()">
         <md-content layout-padding layout="row" layout-sm="column" flex>
             <md-input-container id="year-input-container">
                 <label>Year</label>
@@ -28,10 +28,25 @@
         </md-list>
     </md-content>
 
-    <md-content flex ng-if="ctrl.ibs.isInfoVisible()">
-        <p>The constructor pattern is fairly simple and is designed to work just like a constructor in other OO languages.</p>
-        <p>In this example, there is a <code>Car</code> constructor function which is used to add new <code>Car</code> objects to the list at the bottom of the demo.</p>
-        <p>Constructor functions in Javascript can also be used to specify common methods for all instances to use. This can be accomplished by adding member functions to the <code>prototype</code>. In this example, there is a <code>toString()</code> defined in <code>Car.prototype</code> which all instances of <code>Car</code> can use to display their values.
-        <p>The list at the end of the demo uses <code>Car.prototype.toString()</code> method to display values.</p>
+    <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
+<p>The constructor pattern is fairly simple and is designed to work just like a constructor in other OO languages.</p>
+
+<p>In this example, there is a <code>Car</code> constructor function which is used to add new <code>Car</code> objects to the list at the bottom of the demo.</p>
+
+<p>Constructor functions in Javascript can also be used to specify common methods for all instances to use. This can be accomplished by adding member functions to the <code>prototype</code>. In this example, there is a <code>toString()</code> defined in <code>Car.prototype</code> which all instances of <code>Car</code> can use to display their values.</p>
+
+<p>The list at the end of the demo uses <code>Car.prototype.toString()</code> method to display values.</p>
+
+<p>The <code>Car</code> constructor and the <code>toString()</code> method from the source</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Car</span>(<span class="pl-smi">model</span>, <span class="pl-smi">year</span>, <span class="pl-smi">mileage</span>) {
+    <span class="pl-v">this</span>.model <span class="pl-k">=</span> model;
+    <span class="pl-v">this</span>.year <span class="pl-k">=</span> year;
+    <span class="pl-v">this</span>.mileage <span class="pl-k">=</span> mileage;
+}
+
+<span class="pl-c1">Car</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">toString</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>This <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.year <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.model <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> has driven <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.mileage <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> miles.<span class="pl-pds">'</span></span>;
+};</pre></div>
     </md-content>
 </md-content>
