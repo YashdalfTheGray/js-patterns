@@ -6,6 +6,7 @@ Since access modifiers are not available in JavaScript, true privacy cannot be a
 
 The example code uses the revealing module pattern, where all the members are declared in the "private" scope and then an anonymous object with pointers to the private members we wish to be revealed is returned. 
 
+
 ```javascript
 var todoModule = (function() {
                 // private variables
@@ -31,4 +32,11 @@ var todoModule = (function() {
                     getAllItems: getAllTodoItems
                 };
             })();
+```
+
+Consequenty, These calls to access private members fail.
+
+``` javascript
+console.log(todoModule.pList); // undefined
+console.log(todoModule.getId); // undefined
 ```

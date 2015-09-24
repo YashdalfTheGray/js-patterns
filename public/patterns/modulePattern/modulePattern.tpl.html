@@ -26,16 +26,7 @@
                 </md-list-item>
             </md-list>
         </div>
-        
-        <div class="spacer-lg"></div>
 
-        <div layout="column" flex>
-            <pre>
-                <h4 class="wrap-break-word">These calls access private members and fail.</h4>
-                <div>ctrl.todoModule.pList = {{ctrl.todoModule.pList || 'undefined'}}</div>
-                <div>ctrl.todoModule.getId() = {{ctrl.todoModule.getId() || 'undefined'}}</div>
-            </pre>
-        </div>
     </md-content>
 
     <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
@@ -71,6 +62,11 @@
         getAllItems<span class="pl-k">:</span> getAllTodoItems
     };
 })();</pre></div>
+
+<p>Consequenty, These calls to access private members fail.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">console</span>.<span class="pl-c1">log</span>(todoModule.pList); <span class="pl-c">// undefined</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(todoModule.getId); <span class="pl-c">// undefined</span></pre></div>
     </md-content>
 
 </md-content>
