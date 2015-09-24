@@ -3,8 +3,13 @@
 angular.module('jsPatternsDemo')
 .controller('HomeCtrl', 
     [
-        function() {
+        'infoButtonSvc',
+        function(infoButtonSvc) {
             "use strict";
+            
+            if (infoButtonSvc.isInfoVisible()) {
+                infoButtonSvc.toggleInfo();
+            }
         }
     ]
 );
