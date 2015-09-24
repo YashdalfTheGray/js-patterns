@@ -1,39 +1,76 @@
 <md-content layout-padding layout="column">
     <h2 flex>Module Pattern</h2>
 
-    <div layout="row">
-        <md-content layout="row" layout-sm="column" flex>
-            <md-input-container flex id="title-input-container">
-                <label>Add an item</label>
-                <input ng-model="ctrl.title" id="title-input">
-            </md-input-container>
-            <div class="spacer-lg" show-sm hide-gt-sm></div>
-            <md-button class="md-fab md-accent" aria-label="Add an item" ng-click="ctrl.addItem(ctrl.title)">
-                <i class="material-icons icon-button-adjust">add</i>
-            </md-button>
-        </md-content>
-    </div>
+    <md-content flex ng-hide="ctrl.ibs.isInfoVisible()">
+        <div layout="row">
+            <md-content layout="row" layout-sm="column" flex>
+                <md-input-container flex id="title-input-container">
+                    <label>Add an item</label>
+                    <input ng-model="ctrl.title" id="title-input">
+                </md-input-container>
+                <div class="spacer-lg" show-sm hide-gt-sm></div>
+                <md-button class="md-fab md-accent" aria-label="Add an item" ng-click="ctrl.addItem(ctrl.title)">
+                    <i class="material-icons icon-button-adjust">add</i>
+                </md-button>
+            </md-content>
+        </div>
 
-    <h3 flex>{{ctrl.todoModule.moduleName}} {{ctrl.todoModule.moduleVersion}}</h3>
+        <h3 flex>{{ctrl.todoModule.moduleName}} {{ctrl.todoModule.moduleVersion}}</h3>
 
-    <div layout="column" flex>
-        <md-list>
-            <md-list-item ng-repeat="t in ctrl.todoList">
-                <md-checkbox ng-model="done" ng-click="ctrl.removeItem(t)" aria-label="Mark done">
-                </md-checkbox>
-                {{t}}
-            </md-list-item>
-        </md-list>
-    </div>
-    
-    <div class="spacer-lg"></div>
+        <div layout="column" flex>
+            <md-list>
+                <md-list-item ng-repeat="t in ctrl.todoList">
+                    <md-checkbox ng-model="done" ng-click="ctrl.removeItem(t)" aria-label="Mark done">
+                    </md-checkbox>
+                    {{t}}
+                </md-list-item>
+            </md-list>
+        </div>
+        
+        <div class="spacer-lg"></div>
 
-    <div layout="column" flex>
-        <pre>
-            <h4 class="wrap-break-word">These calls access private members and fail.</h4>
-            <div>ctrl.todoModule.pList = {{ctrl.todoModule.pList || 'undefined'}}</div>
-            <div>ctrl.todoModule.getId() = {{ctrl.todoModule.getId() || 'undefined'}}</div>
-        </pre>
-    </div>
+        <div layout="column" flex>
+            <pre>
+                <h4 class="wrap-break-word">These calls access private members and fail.</h4>
+                <div>ctrl.todoModule.pList = {{ctrl.todoModule.pList || 'undefined'}}</div>
+                <div>ctrl.todoModule.getId() = {{ctrl.todoModule.getId() || 'undefined'}}</div>
+            </pre>
+        </div>
+    </md-content>
+
+    <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
+<p>The module pattern is used to provide public and private encapsulation in classes. The module pattern in JavaScript is used to emulate the concept of a class from other OO languages.</p>
+
+<p>Using the module pattern, we are able to include public and private variables as well as methods inside a single object. This can be used to shield members from the global scope and provide privacy. </p>
+
+<p>Since access modifiers are not available in JavaScript, true privacy cannot be achieved but we can use function scope to simulate it. Anything defined within the module pattern is only available inside the module pattern unless defined under the returning object, which is available publically. </p>
+
+<p>The example code uses the revealing module pattern, where all the members are declared in the "private" scope and then an anonymous object with pointers to the private members we wish to be revealed is returned. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> todoModule <span class="pl-k">=</span> (<span class="pl-k">function</span>() {
+    <span class="pl-c">// private variables</span>
+    <span class="pl-k">var</span> pList <span class="pl-k">=</span> [];
+
+    <span class="pl-c">// public variables</span>
+    <span class="pl-k">var</span> pModuleName <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>My Module<span class="pl-pds">'</span></span>;
+
+    <span class="pl-c">// private methods</span>
+    <span class="pl-k">function</span> <span class="pl-en">getId</span>() { }
+
+    <span class="pl-c">// public methods</span>
+    <span class="pl-k">function</span> <span class="pl-en">addTodoItem</span>(<span class="pl-smi">title</span>) { }
+
+    <span class="pl-k">function</span> <span class="pl-en">removeTodoItem</span>(<span class="pl-smi">title</span>) { }
+
+    <span class="pl-k">function</span> <span class="pl-en">getAllTodoItems</span>() { }
+
+    <span class="pl-k">return</span> {
+        moduleName<span class="pl-k">:</span> pModuleName,
+        add<span class="pl-k">:</span> addTodoItem,
+        remove<span class="pl-k">:</span> removeTodoItem,
+        getAllItems<span class="pl-k">:</span> getAllTodoItems
+    };
+})();</pre></div>
+    </md-content>
 
 </md-content>

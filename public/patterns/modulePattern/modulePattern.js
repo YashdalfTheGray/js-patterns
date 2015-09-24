@@ -4,11 +4,12 @@
 angular.module('jsPatternsDemo')
 .controller('ModulePatternCtrl',
     [
-        'mdClearInput',
-        function(mdClearInput) {
+        'mdClearInput', 'infoButtonSvc',
+        function(mdClearInput, infoButtonSvc) {
             "use strict";
             var vm = this;
 
+            vm.ibs = infoButtonSvc;
             vm.todoModule = (function() {
 
                 // private variables
