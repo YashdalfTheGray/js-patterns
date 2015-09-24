@@ -43,7 +43,9 @@
 }
 
 .markdown-body pre {
-  overflow: auto;
+  overflow: visible;
+  word-wrap: break-word;
+  width: auto;
 }
 
 .markdown-body code,
