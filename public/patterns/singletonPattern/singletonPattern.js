@@ -3,10 +3,13 @@
 angular.module('jsPatternsDemo')
 .controller('SingletonPatternCtrl',
     [
-        function() {
+        'infoButtonSvc',
+        function(infoButtonSvc) {
             "use strict";
-            var vm = this;
 
+            var vm = this;
+            vm.ibs = infoButtonSvc;
+            
             vm.randomNumGen = (function() {
 
                 var instance;

@@ -1,22 +1,27 @@
 <md-content layout-padding layout="column">
     <h2 flex>Singleton Pattern</h2>
-    <h3 flex>{{ctrl.rng.moduleName}} {{ctrl.rng.moduleVersion}}</h3>
-    
-    <div flex>
-        <md-button class="md-raised md-accent" ng-click="ctrl.getNumber()">Get Number</md-button>
-    </div>
+    <md-content flex ng-hide="ctrl.ibs.isInfoVisible()">
+        <h3>{{ctrl.rng.moduleName}} {{ctrl.rng.moduleVersion}}</h3>
+        
+        <div>
+            <md-button class="md-raised md-accent" ng-click="ctrl.getNumber()">Get Number</md-button>
+        </div>
 
-    <div class="spacer-md"></div>
+        <div class="spacer-md"></div>
 
-    <div flex>Generated random number - {{ctrl.number}}</div>
+        <div>Generated random number - {{ctrl.number}}</div>
 
-    <div class="spacer-md"></div>
+        <div class="spacer-lg"></div>
 
-    <div flex>Generated Numbers</div>
-    <md-list flex>
-        <md-list-item ng-repeat="n in ctrl.rng.numberList" layout="row">
-            <div class="spacer-md"></div>
-            {{n}}
-        </md-list-item>
-    </md-list>
+        <div>Generated Numbers</div>
+        <md-list flex>
+            <md-list-item ng-repeat="n in ctrl.rng.numberList" layout="row">
+                <div class="spacer-md"></div>
+                {{n}}
+            </md-list-item>
+        </md-list>
+    </md-content>
+    <md-content flex ng-show="ctrl.ibs.isInfoVisible()">
+        <p>Some infomrmation about the singleton pattern</p>
+    </md-content>
 </md-content>
