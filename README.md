@@ -22,7 +22,5 @@ They can be installed by running `npm install` from the project root.
 * [Angular Material](https://material.angularjs.org/latest/#/)
 * [Material Icons](https://www.google.com/design/icons/)
 
-Change to test pushing. 
-
 
 
