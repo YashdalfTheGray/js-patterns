@@ -21,7 +21,44 @@
             </md-list-item>
         </md-list>
     </md-content>
-    <md-content flex ng-show="ctrl.ibs.isInfoVisible()">
-        <p>Some infomrmation about the singleton pattern</p>
+    <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
+<p>The singleton pattern is used when single instantiation is required. A singleton is created by defining a method that, on first call, creates an instance of the class or object and then returns it. On consequent calls, the already declared method is returned. </p>
+
+<p>A singleton is JavaScript serve as a shared access point for common methods and data. The singleton object can be (and usually is) lazy loaded when it is needed.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">getInstance</span>() {
+    <span class="pl-k">if</span> (<span class="pl-k">!</span>instance) {
+        instance <span class="pl-k">=</span> init();
+    }
+    <span class="pl-k">return</span> instance;
+}</pre></div>
+
+<p>Here, <code>getInstance()</code> will instantiate the singleton object the first time it's called and return the same object in consecutive calls. This is the global point of access for singleton objects. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> randomNumGen <span class="pl-k">=</span> (<span class="pl-k">function</span>() {
+    <span class="pl-k">var</span> instance;
+
+    <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+        <span class="pl-k">var</span> pNumList <span class="pl-k">=</span> [];
+        <span class="pl-k">var</span> pModuleName <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Random Number Generator<span class="pl-pds">'</span></span>;
+        <span class="pl-k">function</span> <span class="pl-en">getAnotherNumber</span>() { <span class="pl-c">/* ommited */</span>  }
+
+        <span class="pl-k">return</span> {
+            moduleName<span class="pl-k">:</span> pModuleName,
+            numberList<span class="pl-k">:</span> pNumList,
+            getAnother<span class="pl-k">:</span> getAnotherNumber
+        };
+    }
+
+    <span class="pl-k">return</span> {
+        <span class="pl-en">getinstance</span><span class="pl-k">:</span> <span class="pl-k">function</span> <span class="pl-en">getSingletonInstance</span>() {
+            <span class="pl-k">if</span> (<span class="pl-k">!</span>instance) {
+                instance <span class="pl-k">=</span> init();
+            }
+            <span class="pl-k">return</span> instance;
+        }
+    };
+})();</pre></div>
+
     </md-content>
 </md-content>
