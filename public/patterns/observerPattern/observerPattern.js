@@ -4,10 +4,12 @@
 angular.module('jsPatternsDemo')
 .controller('ObserverPatternCtrl', 
     [
-        '$mdToast',
-        function($mdToast) {
+        '$mdToast', 'infoButtonSvc',
+        function($mdToast, infoButtonSvc) {
             "use strict";
+
             var vm = this;
+            vm.ibs = infoButtonSvc;
 
             vm.moduleName = "Checkbox notifier";
             vm.moduleVersion = "0.1.0";

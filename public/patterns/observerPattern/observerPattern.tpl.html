@@ -1,14 +1,12 @@
 <md-content layout-padding>
     <h2 flex>Observer Pattern</h2>
 
-    <md-content flex>
+    <md-content flex ng-hide="ctrl.ibs.isInfoVisible()">
         <h3>Subject checkbox</h3>
         <md-checkbox ng-model="ctrl.subjectCheckbox.isChecked" ng-change="ctrl.notifyObservers()" aria-label="Subject Checkbox">
             Check this box to notify observers
         </md-checkbox>
-    </md-content>
 
-    <md-content flex>
         <h3>Add observers</h3>
         <md-radio-group ng-model="ctrl.observerChoice" layout="row" layout-sm="column">
             <md-radio-button value="normal">Normal observer</md-radio-button>
@@ -18,9 +16,7 @@
         <p>
             <md-button class="md-raised md-accent" ng-click="ctrl.addObserver(ctrl.observerChoice)" type="button">Add</md-button>
         </p>
-    </md-content>
 
-    <md-content flex>
         <h3>List of observers</h3>
         <md-list>
             <md-list-item ng-repeat="o in ctrl.subjectCheckbox.observers.observerList">
@@ -35,6 +31,10 @@
                 </div>
             </md-list-item>
         </md-list>
+    </md-content>
+
+    <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
+        <p>Some information about the observer pattern</p>
     </md-content>
 
 </md-content>
