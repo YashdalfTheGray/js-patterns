@@ -34,7 +34,33 @@
     </md-content>
 
     <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
-        <p>Some information about the observer pattern</p>
+<p>The observer pattern consists of two parts, the subject and a list of observers. The subject maintains a list of observers that get notifications once the state of the subject changes. This can also include custom data that the observers can use to learn more about the state change. </p>
+
+<p>Once a particular observer no longer needs to be notified of the changes, they can be removed from the list of observers that the subject maintains.</p>
+
+<p>The observer</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Observer</span>() {
+    <span class="pl-c1">this</span>.<span class="pl-en">update</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() { };
+}</pre></div>
+
+<p>The observer has an <code>update()</code> method which is called when the subject state changes. This is where additional data about the state change can be processed. As observers are added, the <code>update()</code> method is overwritten for custom functionality. </p>
+
+<p>The subject</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Subject</span>() {
+    <span class="pl-v">this</span>.observers <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ObserverList</span>();
+}
+
+<span class="pl-c1">Subject</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">addObserver</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">observer</span>) { };
+
+<span class="pl-c1">Subject</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">removeObserver</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">observer</span>) { };
+
+<span class="pl-c1">Subject</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">notify</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">context</span>) { };</pre></div>
+
+<p>The subject has methods to add observers, remove observers and a <code>notify()</code> method to notify all the observers about a state change. </p>
+
+<p>The <code>ObserverList</code> constructor is just a helper object that contains an array and exposes methods to add, remove, get items as well as get the length of the items. This helps in making sure observers are correctly added and removed from the subject's list of observers. </p>
     </md-content>
 
 </md-content>
