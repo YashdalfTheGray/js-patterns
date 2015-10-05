@@ -1,0 +1,1 @@
+Some information about the prototype pattern. 
