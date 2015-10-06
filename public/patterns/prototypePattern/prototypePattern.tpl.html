@@ -35,7 +35,20 @@
     </md-content>
 
     <md-content class="markdown-body" flex ng-show="ctrl.ibs.isInfoVisible()">
-        <p>Some information about the prototype pattern.</p>
+<p>The prototype pattern leverages JavaScript's prototypal inheritance to provide a blueprint which is used to create objects. A prototype object is created that contains all the common functionality. Afterwards, <code>Object.create()</code> is used to create new objects based off the prototype object.</p>
+
+<div class="highlight highlight-source-js"><pre>carPrototype <span class="pl-k">=</span> {
+    <span class="pl-en">details</span><span class="pl-k">:</span> <span class="pl-k">function</span>() { }
+};</pre></div>
+
+<p>The <code>details()</code> method will be available to all objects created using the <code>carPrototype</code> object above. To create a new object based on a prototype,</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> newCar <span class="pl-k">=</span> <span class="pl-c1">Object</span>.create(carPrototype, customizations);</pre></div>
+
+<p>The <code>customizations</code> object contains any members special to the <code>newCar</code> object like model, make or year.</p>
+
+<p>In JavaScript, the protoype pattern is particularly easy to implement since it leverages the prototypal strengths of the language rather than trying to emulate features of other languages. There are also performance considerations with the prototype pattern since the prototype is a reference, each new object does not create another copy of the prototype object. </p>
+
     </md-content>
 
 </md-content>
