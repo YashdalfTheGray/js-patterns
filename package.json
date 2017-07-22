@@ -4,7 +4,8 @@
   "description": "a list of software patterns in javascript",
   "main": "public/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "release": "webpack -p --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,7 @@
     "software"
   ],
   "author": "Yash Kulshrestha",
-  "license": "GPL v3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/YashdalfTheGray/js-patterns/issues"
   },
@@ -38,10 +39,14 @@
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "gulp-util": "^3.0.6",
+    "html-loader": "^0.4.5",
     "jshint": "^2.8.0",
     "jshint-stylish-ex": "^0.2.0",
     "ngtemplate-loader": "^2.0.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
