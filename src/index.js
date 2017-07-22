@@ -4,5 +4,5 @@ function requireAll(requireContext) {
 
 require('./app');
 
-requireAll('./home', true, /\.js^/);
-requireAll('./patterns', true, /\.js^/);
+requireAll(require.context('./home', true, /\.js$/));
+requireAll(require.context('./patterns', true, /\.js$/));
