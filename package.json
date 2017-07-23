@@ -4,6 +4,7 @@
   "description": "a list of software patterns in javascript",
   "main": "public/index.html",
   "scripts": {
+    "start": "concurrently -n \"webpack,firebase\" -c \"cyan,green\" -s last \"webpack\" \"firebase serve\"",
     "build": "webpack",
     "release": "webpack -p --config webpack.config.prod.js"
   },
@@ -33,6 +34,7 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "chalk": "^1.1.1",
+    "concurrently": "^3.5.0",
     "css-loader": "^0.28.4",
     "del": "^2.0.2",
     "eslint": "^4.2.0",
