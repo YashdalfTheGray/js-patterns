@@ -1,7 +1,7 @@
 /* global angular */
 /* global _ */
 
-angular.module('jsPatternsDemo', 
+angular.module('jsPatternsDemo',
     [
         'ui.router',
         'ngAnimate',
@@ -86,7 +86,6 @@ angular.module('jsPatternsDemo',
             });
 
             $urlRouterProvider.otherwise('/');
-            
 
             $mdThemingProvider.theme('default')
                 .primaryPalette('deep-orange')
@@ -97,7 +96,7 @@ angular.module('jsPatternsDemo',
                 .warnPalette('red');
         }
 ])
-.factory('mdClearInput', 
+.factory('mdClearInput',
     [
         function() {
             "use strict";
@@ -152,7 +151,7 @@ angular.module('jsPatternsDemo',
         }
     ]
 )
-.controller('SidebarCtrl', 
+.controller('SidebarCtrl',
     [
         '$mdSidenav', '$state',
         function($mdSidenav, $state) {
@@ -184,7 +183,7 @@ angular.module('jsPatternsDemo',
         }
     ]
 )
-.controller('ToolbarCtrl', 
+.controller('ToolbarCtrl',
     [
         '$mdSidenav', '$state', 'infoButtonSvc',
         function($mdSidenav, $state, infoButtonSvc) {
