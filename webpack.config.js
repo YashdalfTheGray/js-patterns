@@ -35,5 +35,6 @@ module.exports = {
     },
     stats: {
         color: true
-    }
+    },
+    watch: true
 }
