@@ -2,7 +2,7 @@ const { resolve } = require('path');
 
 module.exports = {
     entry: [
-        // 'babel-polyfill',
+        'babel-polyfill',
         './index'
     ],
     context: resolve('src'),
@@ -18,12 +18,17 @@ module.exports = {
         rules: [
             {
                 test: /.jsx?$/,
-                use: ['babel-loader'],
+                use: ['babel-loader', 'auto-ngtemplate-loader'],
                 exclude: /node_modules/
             },
             {
                 test: /.css$/,
                 use: ['style-loader', 'css-loader'],
+                exclude: /node_modules/
+            },
+            {
+                test: /.html$/,
+                use: ['ngtemplate-loader', 'html-loader'],
                 exclude: /node_modules/
             }
         ]
