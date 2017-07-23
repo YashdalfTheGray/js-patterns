@@ -2,7 +2,7 @@ const { resolve } = require('path');
 
 module.exports = {
     entry: [
-        'babel-polyfill',
+        // 'babel-polyfill',
         './index'
     ],
     context: resolve('src'),
@@ -19,6 +19,11 @@ module.exports = {
             {
                 test: /.jsx?$/,
                 use: ['babel-loader'],
+                exclude: /node_modules/
+            },
+            {
+                test: /.css$/,
+                use: ['style-loader', 'css-loader'],
                 exclude: /node_modules/
             }
         ]
