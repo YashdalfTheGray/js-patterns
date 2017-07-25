@@ -13,14 +13,16 @@ angular.module('jsPatternsDemo')
                 infoButtonSvc.toggleInfo();
             }
 
-            function FirstTest() {
+            function Title() {
                 return (
-                    <div>This is a test</div>
+                    <h1 style={{ padding: '8px' }}>
+                        Please select a pattern from the sidebar.
+                    </h1>
                 );
             }
 
             ReactDOM.render(
-                <FirstTest />,
+                <Title />,
                 document.querySelector('#home-mount-point')
             );
         }
