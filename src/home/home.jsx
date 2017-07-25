@@ -1,6 +1,7 @@
 /* global angular */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import Title from '../components/title';
 
 angular.module('jsPatternsDemo')
 .controller('HomeCtrl',
@@ -11,14 +12,6 @@ angular.module('jsPatternsDemo')
 
             if (infoButtonSvc.isInfoVisible()) {
                 infoButtonSvc.toggleInfo();
-            }
-
-            function Title() {
-                return (
-                    <h1 style={{ padding: '8px' }}>
-                        Please select a pattern from the sidebar.
-                    </h1>
-                );
             }
 
             ReactDOM.render(
