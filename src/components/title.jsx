@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-export default function Title() {
+export default function Title({ children }) {
     return (
         <h2 style={{ padding: '8px' }}>
-            Please select a pattern from the sidebar.
+            {children}
         </h2>
     );
 }
