@@ -6,6 +6,7 @@
   "scripts": {
     "start": "concurrently -n \"webpack,firebase\" -c \"cyan,green\" -s last \"webpack\" \"firebase serve\"",
     "build": "webpack",
+    "linter": "eslint src/** webpack.config.js webpack.config.prod.js",
     "release": "webpack -p --config webpack.config.prod.js"
   },
   "repository": {
