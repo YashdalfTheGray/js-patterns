@@ -9,7 +9,7 @@ angular.module('jsPatternsDemo', [
 ])
 .config([
     '$urlRouterProvider', '$stateProvider', '$mdThemingProvider',
-    function($urlRouterProvider, $stateProvider, $mdThemingProvider) {
+    ($urlRouterProvider, $stateProvider, $mdThemingProvider) => {
         $stateProvider
         .state('home', {
             url: '/',
@@ -86,25 +86,25 @@ angular.module('jsPatternsDemo', [
 
         $mdThemingProvider.theme('default')
         .primaryPalette('deep-orange')
-        .accentPalette('blue',{
-            'default': 'A400',
+        .accentPalette('blue', {
+            default: 'A400',
             'hue-1': 'A700'
         })
         .warnPalette('red');
     }
 ])
-.factory('mdClearInput', function() {
+.factory('mdClearInput', () => {
     function clearInput(inputId) {
-        var inputBox = document.getElementById(inputId);
+        const inputBox = document.getElementById(inputId);
         if (inputBox !== null) {
             inputBox.value = '';
-            angular.element(document.getElementById(inputId + '-container')).removeClass('md-input-has-value');
+            angular.element(document.getElementById(`${inputId}-container`)).removeClass('md-input-has-value');
         }
     }
 
     function clearInputs(inputIdArray) {
         if (_.isArray(inputIdArray)) {
-            _.forEach(inputIdArray, function(item) {
+            _.forEach(inputIdArray, (item) => {
                 clearInput(item);
             });
         }
@@ -121,7 +121,7 @@ angular.module('jsPatternsDemo', [
 })
 .factory('infoButtonSvc', [
     '$rootScope',
-    function($rootScope) {
+    ($rootScope) => {
         $rootScope.infoShowing = false;
 
         function toggleInfo() {
@@ -132,20 +132,17 @@ angular.module('jsPatternsDemo', [
             return $rootScope.infoShowing;
         }
 
-        return {
-            toggleInfo: toggleInfo,
-            isInfoVisible: isInfoVisible
-        };
+        return { toggleInfo, isInfoVisible };
     }
 ])
 .controller('SidebarCtrl', [
     '$mdSidenav', '$state',
-    function($mdSidenav, $state) {
-        var vm = this;
+    ($mdSidenav, $state) => {
+        const vm = this;
 
         vm.goTo = function goToState(state) {
             $state.go(state);
-            if(!$mdSidenav('patterns').isLockedOpen()) {
+            if (!$mdSidenav('patterns').isLockedOpen()) {
                 $mdSidenav('patterns').close();
             }
         };
@@ -161,18 +158,18 @@ angular.module('jsPatternsDemo', [
             { name: 'Mixin', state: 'mixin-pattern' },
             { name: 'Module', state: 'module-pattern' },
             { name: 'Observer', state: 'observer-pattern' },
-            { name: 'Prototype', state: 'prototype-pattern'},
+            { name: 'Prototype', state: 'prototype-pattern' },
             { name: 'Singleton', state: 'singleton-pattern' },
-            { name: 'Visitor', state: 'visitor-pattern'}
+            { name: 'Visitor', state: 'visitor-pattern' }
         ];
     }
 ])
 .controller('ToolbarCtrl', [
     '$mdSidenav', '$state', 'infoButtonSvc',
-    function($mdSidenav, $state, infoButtonSvc) {
-        var vm = this;
+    ($mdSidenav, $state, infoButtonSvc) => {
+        const vm = this;
 
-        vm.compomentName = "Toolbar";
+        vm.compomentName = 'Toolbar';
         vm.ibs = infoButtonSvc;
 
         vm.isHome = function isHome() {
