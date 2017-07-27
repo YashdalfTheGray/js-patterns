@@ -1,3 +1,29 @@
 {
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "rules": {
+        "brace-style": ["error", "stroustrup"],
+        "class-methods-use-this": ["off"],
+        "comma-dangle": ["error", "never"],
+        "func-names": ["error", "as-needed"],
+        "indent": ["error", 4],
+        "linebreak-style": ["off"],
+        "max-len": ["warn", 120],
+        "no-console": ["off"],
+        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["$rootScope"] }],
+        "object-shorthand": ["error", "consistent-as-needed"],
+        "space-before-function-paren": ["error", {"anonymous": "never", "named": "never", "asyncArrow": "always"}],
+        "react/forbid-prop-types": ["off"],
+        "react/jsx-closing-bracket-location": ["off"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/jsx-no-bind": ["off"],
+        "react/jsx-wrap-multilines": ["error", { "declaration": false, "assignment": false, "return": true, "arrow": true }]
+    }
 }
