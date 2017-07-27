@@ -37,4 +37,4 @@ module.exports = {
         color: true
     },
     watch: true
-}
+};
