@@ -6,8 +6,7 @@ import Title from '../components/title';
 angular.module('jsPatternsDemo')
 .controller('HomeCtrl', [
     'infoButtonSvc',
-    function(infoButtonSvc) {
-
+    (infoButtonSvc) => {
         if (infoButtonSvc.isInfoVisible()) {
             infoButtonSvc.toggleInfo();
         }
