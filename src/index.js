@@ -1,5 +1,5 @@
 function requireAll(requireContext) {
-  return requireContext.keys().map(requireContext);
+    return requireContext.keys().map(requireContext);
 }
 
 require('./app');
