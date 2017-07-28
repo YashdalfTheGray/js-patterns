@@ -137,7 +137,7 @@ angular.module('jsPatternsDemo', [
 ])
 .controller('SidebarCtrl', [
     '$mdSidenav', '$state',
-    ($mdSidenav, $state) => {
+    function SidebarCtrl($mdSidenav, $state) {
         const vm = this;
 
         vm.goTo = function goToState(state) {
@@ -166,7 +166,7 @@ angular.module('jsPatternsDemo', [
 ])
 .controller('ToolbarCtrl', [
     '$mdSidenav', '$state', 'infoButtonSvc',
-    ($mdSidenav, $state, infoButtonSvc) => {
+    function ToolbarCtrl($mdSidenav, $state, infoButtonSvc) {
         const vm = this;
 
         vm.compomentName = 'Toolbar';
