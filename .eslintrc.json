@@ -16,7 +16,7 @@
         "linebreak-style": ["off"],
         "max-len": ["warn", 120],
         "no-console": ["off"],
-        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["$rootScope"] }],
+        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["$rootScope", "items"] }],
         "object-shorthand": ["error", "consistent-as-needed"],
         "space-before-function-paren": ["error", {"anonymous": "never", "named": "never", "asyncArrow": "always"}],
         "react/forbid-prop-types": ["off"],
