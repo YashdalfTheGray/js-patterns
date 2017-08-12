@@ -15,18 +15,33 @@
     <!-- 3rd party CSS -->
     <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
     <!-- 3rd part JS -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.11.0/angular-material.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-    <script src="//cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
-    <script src="//cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="//unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <script src="//cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB9EL_KaGVM0ib80c-Q5exMWG7DGI-YhBs",
+            authDomain: "js-patterns.firebaseapp.com",
+            databaseURL: "https://js-patterns.firebaseio.com",
+            projectId: "js-patterns",
+            storageBucket: "",
+            messagingSenderId: "101115228728"
+        };
+        firebase.initializeApp(config);
+        console.log('I fucking ran');
+    </script>
 
     <!-- App bundle -->
     <script src="bundle.js"></script>
@@ -50,17 +65,18 @@
     </md-toolbar>
 
     <div flex layout="row">
-        <md-sidenav md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2" md-component-id="patterns" layout="column">
+        <md-sidenav
+            md-is-locked-open="$mdMedia('gt-md')"
+            class="md-sidenav-left"
+            md-whiteframe="4"
+            md-component-id="patterns"
+            layout="column">
             <md-content ng-controller="SidebarCtrl as ctrl" flex>
-                <div layout="column" flex>
-                    <div flex>
-                        <md-list>
-                            <md-item ng-repeat="p in ctrl.patterns">
-                                <h3 class="patterns-list-item"><span ng-click="ctrl.goTo(p.state)">{{p.name}}</span></h3>
-                            </md-item>
-                        </md-list>
-                    </div>
-                </div>
+                <md-list>
+                    <md-item ng-repeat="p in ctrl.patterns">
+                        <h3 class="patterns-list-item"><span ng-click="ctrl.goTo(p.state)">{{p.name}}</span></h3>
+                    </md-item>
+                </md-list>
             </md-content>
         </md-sidenav>
 
