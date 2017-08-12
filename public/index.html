@@ -40,7 +40,6 @@
             messagingSenderId: "101115228728"
         };
         firebase.initializeApp(config);
-        console.log('I fucking ran');
     </script>
 
     <!-- App bundle -->
@@ -52,14 +51,14 @@
     <md-toolbar ng-controller="ToolbarCtrl as ctrl">
         <div class="md-toolbar-tools">
             <md-button hide-gt-md class="md-icon-button" aria-label="Menu" ng-click="ctrl.showNav()">
-                <i class="material-icons icon-button-adjust">menu</i>
+                <i class="material-icons">menu</i>
             </md-button>
             <h2 ng-if="!ctrl.isHome()"><span><a ui-sref="home">JS Patterns Demo</a></span></h2>
             <h2 ng-if="ctrl.isHome()"><span>JS Patterns Demo</span></h2>
             <div flex></div>
             <md-button class="md-icon-button" ng-click="ctrl.ibs.toggleInfo()" ng-hide="ctrl.isHome()">
-                <i class="material-icons icon-button-adjust" ng-show="!ctrl.ibs.isInfoVisible()">info_outline</i>
-                <i class="material-icons icon-button-adjust" ng-show="ctrl.ibs.isInfoVisible()">info</i>
+                <i class="material-icons" ng-show="!ctrl.ibs.isInfoVisible()">info_outline</i>
+                <i class="material-icons" ng-show="ctrl.ibs.isInfoVisible()">info</i>
             </md-button>
         </div>
     </md-toolbar>

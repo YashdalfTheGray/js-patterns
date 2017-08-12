@@ -1,12 +1,11 @@
 /* global angular */
 
 angular.module('jsPatternsDemo')
-.controller('ConstructorPatternCtrl', 
+.controller('ConstructorPatternCtrl',
     [
         'mdClearInput', 'infoButtonSvc',
-        function(mdClearInput, infoButtonSvc) {
-            "use strict";
-            var vm = this;
+        function ConstructorPatternCtrl(mdClearInput, infoButtonSvc) {
+            const vm = this;
 
             vm.ibs = infoButtonSvc;
 
@@ -16,8 +15,8 @@ angular.module('jsPatternsDemo')
                 this.mileage = mileage;
             }
 
-            Car.prototype.toString = function() {
-                return 'This ' + this.year + ' ' + this.model + ' has driven ' + this.mileage + ' miles.';
+            Car.prototype.toString = function carToString() {
+                return `This ${this.year} ${this.model} has driven ${this.mileage} miles.`;
             };
 
             vm.cars = [];
