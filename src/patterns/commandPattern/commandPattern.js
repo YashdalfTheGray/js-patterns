@@ -1,80 +1,71 @@
 /* global angular */
-/* global Firebase */
+/* global firebase */
 /* global _ */
 
 angular.module('jsPatternsDemo')
-.controller('CommandPatternCtrl', 
-    [
-        '$firebaseArray', '$mdToast', /*'$mdDialog',*/
-        function($firebaseArray, $mdToast/*, $mdDialog*/) {
-            "use strict";
-            var vm = this;
-            var ref = new Firebase("https://js-patterns.firebaseio.com/command/items/");
+.controller('CommandPatternCtrl', [
+    '$firebaseArray', '$mdToast', /* '$mdDialog', */
+    function CommandPatternCtrl($firebaseArray, $mdToast/* , $mdDialog */) {
+        const vm = this;
+        const ref = firebase.database().ref('/command/items');
 
-            vm.contentLoaded = false;
-            vm.items = $firebaseArray(ref);
+        vm.contentLoaded = false;
+        vm.items = $firebaseArray(ref);
 
-            vm.items.$loaded().then(function () {
-                vm.contentLoaded = true;
-            });
+        vm.items.$loaded().then(() => {
+            vm.contentLoaded = true;
+        });
 
-            vm.inventory = (function(items) {
+        vm.inventory = ((items) => {
+            function findItemIndex(itemId) {
+                return _.findIndex(items, item => item.$id === itemId);
+            }
 
-                function findItemIndex(itemId) {
-                    return _.findIndex(items, function(item) {
-                        return item.$id === itemId;
-                    });
+            function buyItem(itemId) {
+                items[findItemIndex(itemId)].quantity += 1;
+            }
+
+            function useItem(itemId) {
+                if (items[findItemIndex(itemId)].quantity > 0) {
+                    items[findItemIndex(itemId)].quantity -= 1;
                 }
-
-                function buyItem(itemId) {
-                    items[findItemIndex(itemId)].quantity++;
-                }
-
-                function useItem(itemId) {
-                    if (items[findItemIndex(itemId)].quantity > 0) {
-                        items[findItemIndex(itemId)].quantity--;
-                    }
-                    else {
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .content('Nothing left to use!')
-                            .position('bottom right')
-                            .hideDelay(2000)
-                        );
-                    }
-                }
-
-                function getItemDetails(itemId) {
-                    var item = items[findItemIndex(itemId)];
-
+                else {
                     $mdToast.show(
                         $mdToast.simple()
-                        .content(item.description)
+                        .content('Nothing left to use!')
                         .position('bottom right')
-                        .hideDelay(3000)
+                        .hideDelay(2000)
                     );
-                    // For whatever reason, the dialog won't display. Thanks ngMaterial                
-                    // $mdDialog.show($mdDialog.alert()
-                    //     .parent(angular.element(document.body))
-                    //     .title(item.title + ' details')
-                    //     .content(item.description)
-                    //     .ariaLabel('Item detail dialog')
-                    //     .ok('Close')
-                    //     .targetEvent(ev));
                 }
+            }
 
-                var inventoryManager = {
-                    buy: buyItem,
-                    use: useItem,
-                    details: getItemDetails 
-                };
-                inventoryManager.execute = function(name) {
-                    return inventoryManager[name] && inventoryManager[name].apply(inventoryManager, [].slice.call(arguments, 1));
-                };
+            function getItemDetails(itemId) {
+                const item = items[findItemIndex(itemId)];
 
-                return inventoryManager;
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content(item.description)
+                    .position('bottom right')
+                    .hideDelay(3000)
+                );
+                // For whatever reason, the dialog won't display. Thanks ngMaterial
+                // $mdDialog.show($mdDialog.alert()
+                //     .parent(angular.element(document.body))
+                //     .title(item.title + ' details')
+                //     .content(item.description)
+                //     .ariaLabel('Item detail dialog')
+                //     .ok('Close')
+                //     .targetEvent(ev));
+            }
 
-            })(vm.items);
-        }
-    ]
-);
+            const inventoryManager = {
+                buy: buyItem,
+                use: useItem,
+                details: getItemDetails
+            };
+            inventoryManager.execute = (name, ...rest) => inventoryManager[name] && inventoryManager[name](rest);
+
+            return inventoryManager;
+        })(vm.items);
+    }
+]);
