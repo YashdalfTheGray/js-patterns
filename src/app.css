@@ -27,14 +27,6 @@
     word-wrap: break-word;
 }
 
-.label-fix > div.md-label {
-    padding-top: 4px;
-}
-
 .scroll-container {
     overflow: scroll;
-}
-
-.new-employee-align {
-    padding-left: 16px;
 }
