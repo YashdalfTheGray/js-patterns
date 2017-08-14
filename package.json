@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently -n \"webpack,firebase\" -c \"cyan,green\" -s last \"webpack\" \"firebase serve\"",
     "build": "webpack",
-    "linter": "eslint src/** webpack.config.js webpack.config.prod.js",
+    "linter": "eslint src/**/*.js webpack.config.js webpack.config.prod.js",
     "linter-autofix": "eslint --fix",
     "release": "webpack -p --config webpack.config.prod.js"
   },
@@ -55,7 +55,13 @@
     "webpack": "^3.3.0"
   },
   "dependencies": {
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-aria": "^1.6.5",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.5",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
