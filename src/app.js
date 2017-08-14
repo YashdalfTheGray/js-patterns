@@ -1,10 +1,12 @@
-/* global angular */
-/* global _ */
+import * as angular from 'angular';
+import * as _ from 'lodash';
+import * as ngAnimate from 'angular-animate';
+import * as ngMaterial from 'angular-material';
 
 angular.module('jsPatternsDemo', [
     'ui.router',
-    'ngAnimate',
-    'ngMaterial',
+    ngAnimate,
+    ngMaterial,
     'firebase'
 ])
 .config([
