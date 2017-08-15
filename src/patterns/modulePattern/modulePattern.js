@@ -1,27 +1,25 @@
-/* global angular */
-/* global _ */
+import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular.module('jsPatternsDemo')
 .controller('ModulePatternCtrl',
     [
         'mdClearInput', 'infoButtonSvc',
         function(mdClearInput, infoButtonSvc) {
-            "use strict";
-            var vm = this;
+            const vm = this;
 
             vm.ibs = infoButtonSvc;
             vm.todoModule = (function() {
-
                 // private variables
-                var pList = [];
+                const pList = [];
 
                 // public variables
-                var pModuleName = 'Simple Todo';
-                var pModuleVersion = '0.1.0';
+                const pModuleName = 'Simple Todo';
+                const pModuleVersion = '0.1.0';
 
                 // private methods
                 function getId() {
-                    return Math.floor(Math.random() * (999999 - 100000) + 100000);
+                    return Math.floor((Math.random() * (999999 - 100000)) + 100000);
                 }
 
                 // public methods
@@ -31,17 +29,15 @@ angular.module('jsPatternsDemo')
                         title: title
                     });
                 }
-                
+
                 function removeTodoItem(title) {
-                    _.remove(pList, function(n) {
-                        return n.title === title;
-                    });
+                    _.remove(pList, n => n.title === title);
                 }
 
                 function getAllTodoItems() {
-                    var result = [];
+                    const result = [];
 
-                    _.forEach(pList, function(item) {
+                    _.forEach(pList, (item) => {
                         result.push(item.title);
                     });
 
@@ -55,7 +51,7 @@ angular.module('jsPatternsDemo')
                     remove: removeTodoItem,
                     getAllItems: getAllTodoItems
                 };
-            })();
+            }());
 
             vm.todoList = vm.todoModule.getAllItems();
 
@@ -63,7 +59,6 @@ angular.module('jsPatternsDemo')
                 vm.todoModule.add(title);
                 vm.todoList = vm.todoModule.getAllItems();
                 mdClearInput.clearInputBox('title-input');
-
             };
 
             vm.removeItem = function removeItem(title) {

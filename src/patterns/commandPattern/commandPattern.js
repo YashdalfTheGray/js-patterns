@@ -1,6 +1,6 @@
-/* global angular */
 /* global firebase */
-/* global _ */
+import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular.module('jsPatternsDemo')
 .controller('CommandPatternCtrl', [

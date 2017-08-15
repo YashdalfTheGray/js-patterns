@@ -1,16 +1,15 @@
-/* global angular */
+import * as angular from 'angular';
 
 angular.module('jsPatternsDemo')
-.controller('FlyweightPatternCtrl', 
+.controller('FlyweightPatternCtrl',
     [
         '$timeout', '$scope', 'mdClearInput',
         function($timeout, $scope, mdClearInput) {
-            "use strict";
-            var vm = this;
+            const vm = this;
 
             // This approximates the implements keyword in other languages.
             // Find a better way to do this, modifying native objects feels...weird.
-            /* jshint newcap:false, freeze:false */
+            /* eslint-disable new-cap, no-extend-native */
             Function.prototype.implementsFor = function(parent) {
                 if (parent.constructor === Function) {
                     this.prototype = new parent();
@@ -22,16 +21,16 @@ angular.module('jsPatternsDemo')
                     this.prototype.constructor = this;
                     this.prototype.parent = parent;
                 }
-            };  
-            /* jshint newcap:true, freeze:true */
+            };
+            /* eslint-enable new-cap, no-extend-native */
 
-            var CoffeeOrder = {
-                serveCoffee: function() {},
-                getFlavor: function() {}
+            const CoffeeOrder = {
+                serveCoffee() {},
+                getFlavor() {}
             };
 
             function CoffeeFlavor(newFlavor) {
-                var flavor = newFlavor;
+                const flavor = newFlavor;
 
                 if (typeof this.getFlavor === 'function') {
                     this.getFlavor = function() {
@@ -41,7 +40,7 @@ angular.module('jsPatternsDemo')
 
                 if (typeof this.serveCoffee === 'function') {
                     this.serveCoffee = function(context) {
-                        return 'Serving coffee flavor ' + flavor + ' to table ' + context.getTable() + '.';
+                        return `Serving coffee flavor ${flavor} to table ${context.getTable()}.`;
                     };
                 }
             }
@@ -50,27 +49,27 @@ angular.module('jsPatternsDemo')
 
             function CoffeeOrderContext(tableNumber) {
                 return {
-                    getTable: function() {
+                    getTable() {
                         return tableNumber;
                     }
                 };
             }
 
             function CoffeeFlavorFactory() {
-                var flavors = {};
-                var length = 0;
+                const flavors = {};
+                let length = 0;
 
                 return {
-                    getCoffeeFlavor: function(flavorName) {
-                        var flavor = flavors[flavorName];
+                    getCoffeeFlavor(flavorName) {
+                        let flavor = flavors[flavorName];
                         if (typeof flavor === 'undefined') {
                             flavor = new CoffeeFlavor(flavorName);
                             flavors[flavorName] = flavor;
-                            length++;
+                            length += 1;
                         }
                         return flavor;
                     },
-                    getTotalCoffeeFlavorsMade: function() {
+                    getTotalCoffeeFlavorsMade() {
                         return length;
                     }
                 };
@@ -88,29 +87,30 @@ angular.module('jsPatternsDemo')
             };
 
             vm.takeOrders = function(flavorIn, table) {
-                var timer;
-
                 vm.flavors[vm.ordersMade] = vm.flavorFactory.getCoffeeFlavor(flavorIn);
                 vm.tables[vm.ordersMade] = new CoffeeOrderContext(table);
 
-                timer = $timeout(vm.flavors[vm.ordersMade].serveCoffee, vm.getRandomDuration(), true, vm.tables[vm.ordersMade]);
-                timer.then(function(result) {
+                const timer = $timeout(
+                    vm.flavors[vm.ordersMade].serveCoffee,
+                    vm.getRandomDuration(),
+                    true,
+                    vm.tables[vm.ordersMade]
+                );
+                timer.then((result) => {
                     vm.servedLog.push(result);
                 },
-                function() {
+                () => {
                     console.log('Coffee order canceled.');
                 });
                 vm.timers.push(timer);
 
-                vm.ordersMade++;
+                vm.ordersMade += 1;
 
                 mdClearInput.clearInputBoxes(['flavor-input', 'table-input']);
             };
 
-            $scope.$on('$destroy', function() {
-                for (var i = 0; i < vm.timers.length; i++) {
-                    $timeout.cancel(vm.timers[i]);
-                }
+            $scope.$on('$destroy', () => {
+                vm.timers.forEach(t => $timeout.cancel(t));
             });
         }
     ]

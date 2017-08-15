@@ -1,40 +1,37 @@
-/* global angular */
+import * as angular from 'angular';
 
 angular.module('jsPatternsDemo')
-.controller('PrototypePatternCtrl', 
+.controller('PrototypePatternCtrl',
     [
         'mdClearInput', 'infoButtonSvc',
         function(mdClearInput, infoButtonSvc) {
-            "use strict";
-
-            var vm = this;
+            const vm = this;
             vm.ibs = infoButtonSvc;
             vm.cars = [];
 
             vm.car = {
-                details: function() {
+                details() {
                     if (this.year && this.make && this.model) {
-                        return 'This car is a ' + this.year + ' ' + this.make + ' ' + this.model + '.';
+                        return `This car is a ${this.year} ${this.make} ${this.model}.`;
                     }
-                    else {
-                        return 'This is a generic car.';
-                    }
+
+                    return 'This is a generic car.';
                 }
             };
 
             vm.cars.push(vm.car);
 
             vm.addCar = function(year, make, model) {
-                var newCar = Object.create(vm.car, {
-                    "year": {
+                const newCar = Object.create(vm.car, {
+                    year: {
                         value: year,
                         enumerable: true
                     },
-                    "make": {
+                    make: {
                         value: make,
                         enumerable: true
                     },
-                    "model": {
+                    model: {
                         value: model,
                         enumerable: true
                     }

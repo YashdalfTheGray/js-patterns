@@ -5,11 +5,10 @@ angular.module('jsPatternsDemo')
     [
         'mdClearInput',
         function(mdClearInput) {
-            "use strict";
-            var vm = this;
+            const vm = this;
 
             function Employee(name, salary, vacation) {
-                var self = this;
+                const self = this;
 
                 this.accept = function(visitor) {
                     return visitor.visit(self);
@@ -20,7 +19,7 @@ angular.module('jsPatternsDemo')
                 };
 
                 this.setName = function(value) {
-                    name = value;
+                    name = value; // eslint-disable-line no-param-reassign
                 };
 
                 this.getSalary = function() {
@@ -28,7 +27,7 @@ angular.module('jsPatternsDemo')
                 };
 
                 this.setSalary = function(value) {
-                    salary = value;
+                    salary = value; // eslint-disable-line no-param-reassign
                 };
 
                 this.getVacation = function() {
@@ -36,7 +35,7 @@ angular.module('jsPatternsDemo')
                 };
 
                 this.setVacation = function(value) {
-                    vacation = value;
+                    vacation = value; // eslint-disable-line no-param-reassign
                 };
             }
 
@@ -53,7 +52,7 @@ angular.module('jsPatternsDemo')
             }
             function PrintDetails() {
                 this.visit = function(employee) {
-                    return employee.getName() + ' makes $' + employee.getSalary() + ' and has ' + employee.getVacation() + ' days of vacation.';
+                    return `${employee.getName()} makes $${employee.getSalary()} and has ${employee.getVacation()} days of vacation.`;
                 };
             }
 
@@ -67,8 +66,8 @@ angular.module('jsPatternsDemo')
             ];
 
             vm.addEmployee = function(name) {
-                var randomSalary = Math.round((Math.random() * 20) + 45) * 1000;
-                var randomVacation = Math.round((Math.random() * 5) + 10);
+                const randomSalary = Math.round((Math.random() * 20) + 45) * 1000;
+                const randomVacation = Math.round((Math.random() * 5) + 10);
                 vm.employees.push(new Employee(name, randomSalary, randomVacation));
                 mdClearInput.clearInputBox('empname-input');
             };

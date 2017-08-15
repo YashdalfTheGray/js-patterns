@@ -1,35 +1,34 @@
-/* global angular */
-/* global _ */
+import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular.module('jsPatternsDemo')
-.controller('MixinPatternCtrl', 
+.controller('MixinPatternCtrl',
     [
         'mdClearInput',
         function(mdClearInput) {
-            "use strict";
-            var vm = this;
+            const vm = this;
 
             vm.phones = [];
             vm.phoneChoice = 'android';
 
             function getLat() {
-                var num = (Math.random() * 90).toFixed(7);
+                const num = (Math.random() * 90).toFixed(7);
                 return Math.random() > 0.5 ? num : num * -1;
             }
 
             function getLong() {
-                var num = (Math.random() * 180).toFixed(7);
+                const num = (Math.random() * 180).toFixed(7);
                 return Math.random() > 0.5 ? num : num * -1;
             }
 
-            var PhoneAdminMixins = {
-                lock: function() {
+            const PhoneAdminMixins = {
+                lock() {
                     console.log('Phone has been locked.');
                 },
-                track: function() {
-                    console.log('Phone located at https://www.google.com/maps/@' + getLong() + ',' + getLat() + ',16z');
+                track() {
+                    console.log(`Phone located at https://www.google.com/maps/@${getLong()},${getLat()},16z`);
                 },
-                wipe: function() {
+                wipe() {
                     console.log('Phone has been deregistered and wiped.');
                 }
             };
@@ -56,8 +55,8 @@ angular.module('jsPatternsDemo')
                 if (vm.phoneChoice === 'android') {
                     vm.phones.push(new AndroidDevice({
                         manufacturer: vm.manufacturer,
-                        model: vm.model, 
-                        osVersion: vm.osVersion 
+                        model: vm.model,
+                        osVersion: vm.osVersion
                     }));
                 }
                 else if (vm.phoneChoice === 'ios') {

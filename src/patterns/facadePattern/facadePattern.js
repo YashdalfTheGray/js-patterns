@@ -1,21 +1,20 @@
-/* global angular */
+import * as angular from 'angular';
 
 angular.module('jsPatternsDemo')
-.controller('FacadePatternCtrl', 
+.controller('FacadePatternCtrl',
     [
         'mdClearInput',
         function(mdClearInput) {
-            "use strict";
-            var vm = this;
+            const vm = this;
 
             vm.autoQuoteMachine = (function() {
-                var _private = {
+                const privateStuff = {
                     baseRate: 50,
                     checkAge: function(age, baseRate) {
                         return age > 25 ? baseRate : baseRate * 1.4;
                     },
                     adjustForDrivingRecord: function(name, baseRate) {
-                        return baseRate * (1 + Math.random() * (0.05 + (name.length / 100)));
+                        return baseRate * (1 + (Math.random() * (0.05 + (name.length / 100))));
                     },
                     roundToNearestCent: function(number) {
                         return (Math.round(number * 100)) / 100;
@@ -24,14 +23,14 @@ angular.module('jsPatternsDemo')
                 };
 
                 return {
-                    getInsuranceQuote: function(name, age) {
-                        var finalRate = _private.checkAge(age, _private.baseRate);
-                        finalRate = _private.adjustForDrivingRecord(name, finalRate);
-                        finalRate = _private.roundToNearestCent(finalRate);
+                    getInsuranceQuote(name, age) {
+                        let finalRate = privateStuff.checkAge(age, privateStuff.baseRate);
+                        finalRate = privateStuff.adjustForDrivingRecord(name, finalRate);
+                        finalRate = privateStuff.roundToNearestCent(finalRate);
                         return finalRate;
                     }
                 };
-            })();
+            }());
 
             vm.getQuote = function(name, age) {
                 vm.quote = vm.autoQuoteMachine.getInsuranceQuote(name, age);
@@ -39,33 +38,31 @@ angular.module('jsPatternsDemo')
             };
 
             vm.printCurrency = function(amount) {
-                if(amount) {
+                if (amount) {
                     // A note about the tenthsPlace variable - It is not actually the
                     // tenths place in the decimal because in the case where amount
                     // is 45.03, tenthsPlace evaluates to 0.3 which is technically correct
                     // and makes the formatting function work but the variable is not
-                    // named correctly. 
-                    // 
+                    // named correctly.
+                    //
                     // To make it function correctly, the current expression would need to be
                     // wrapped in a Math.round().
-                    // 
+                    //
                     // TODO - Tech debt, I guess.
-                    var tenthsPlace = (amount * 10) - (Math.round(amount) * 10);
-                    var hundredthsPlace = (amount * 100) - (Math.round(amount * 10) * 10);
+                    const tenthsPlace = (amount * 10) - (Math.round(amount) * 10);
+                    const hundredthsPlace = (amount * 100) - (Math.round(amount * 10) * 10);
 
                     if (hundredthsPlace === 0 && tenthsPlace !== 0) {
-                        return amount.toString() + '0';
+                        return `${amount.toString()}0`;
                     }
                     else if (tenthsPlace === 0) {
-                        return amount.toString() + '.00';
+                        return `${amount.toString()}.00`;
                     }
-                    else {
-                        return amount.toString();
-                    }
+
+                    return amount.toString();
                 }
-                else {
-                    return '0.00';
-                }
+
+                return '0.00';
             };
         }
     ]

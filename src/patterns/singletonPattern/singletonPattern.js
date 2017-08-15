@@ -1,30 +1,27 @@
-/* global angular */
+import * as angular from 'angular';
 
 angular.module('jsPatternsDemo')
 .controller('SingletonPatternCtrl',
     [
         'infoButtonSvc',
         function(infoButtonSvc) {
-            "use strict";
-
-            var vm = this;
+            const vm = this;
             vm.ibs = infoButtonSvc;
-            
-            vm.randomNumGen = (function() {
 
-                var instance;
+            vm.randomNumGen = (function() {
+                let instance;
 
                 function init() {
                     // This is where the singleton declaration goes
                     // This pattern builds on the module pattern
-                    
-                    var pNumList = [];
 
-                    var pModuleName = 'Random Number Generator';
-                    var pModuleVersion = '0.1.0';
+                    const pNumList = [];
+
+                    const pModuleName = 'Random Number Generator';
+                    const pModuleVersion = '0.1.0';
 
                     function getAnotherNumber() {
-                        var num = Math.floor(Math.random() * 999999);
+                        const num = Math.floor(Math.random() * 999999);
                         pNumList.push(num);
                         return num;
                     }
@@ -46,8 +43,7 @@ angular.module('jsPatternsDemo')
                         return instance;
                     }
                 };
-
-            })();
+            }());
 
             vm.rng = vm.randomNumGen.getinstance();
             vm.number = vm.rng.getAnother();

@@ -1,4 +1,4 @@
-/* global angular */
+import * as angular from 'angular';
 
 angular.module('jsPatternsDemo')
 .controller('ConstructorPatternCtrl',

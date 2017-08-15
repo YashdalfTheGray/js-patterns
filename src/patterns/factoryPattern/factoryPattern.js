@@ -1,12 +1,11 @@
-/* global angular */
+import * as angular from 'angular';
 
 angular.module('jsPatternsDemo')
-.controller('FactoryPatternCtrl', 
+.controller('FactoryPatternCtrl',
     [
         'mdClearInput',
         function(mdClearInput) {
-            "use strict";
-            var vm = this;
+            const vm = this;
 
             vm.shapeChoice = 'rectangle';
 
@@ -28,10 +27,10 @@ angular.module('jsPatternsDemo')
                     return formatNumber(2 * (this.h + this.l));
                 };
                 this.center = function() {
-                    return '(' + this.x + ', ' + this.y + ')';
+                    return `(${this.x}, ${this.y})`;
                 };
                 this.toString = function() {
-                    return 'This rectangle has a length of ' + this.l + ', a height of ' + this.h + ' and is centered at ' + this.center() + '. The area is ' + this.area() + ' and the perimeter is ' + this.perimeter() + '.';
+                    return `This rectangle has a length of ${this.l}, a height of ${this.h} and is centered at ${this.center()}. The area is ${this.area()} and the perimeter is ${this.perimeter()}.`;
                 };
             }
 
@@ -48,10 +47,10 @@ angular.module('jsPatternsDemo')
                     return formatNumber(2 * Math.PI * this.r);
                 };
                 this.center = function() {
-                    return '(' + this.x + ', ' + this.y + ')';
+                    return `(${this.x}, ${this.y})`;
                 };
                 this.toString = function() {
-                    return 'This circle has a radius of ' + this.r + ' and is centered at ' + this.center() + '. The area is ' + this.area() + ' and the perimeter is ' + this.perimeter() + '.';
+                    return `This circle has a radius of ${this.r} and is centered at ${this.center()}. The area is ${this.area()} and the perimeter is ${this.perimeter()}.`;
                 };
             }
 
@@ -60,17 +59,18 @@ angular.module('jsPatternsDemo')
             ShapeFactory.prototype.shapeClass = Rectangle;
 
             ShapeFactory.prototype.createShape = function(options) {
-
-                switch(options.type) {
-                    case 'rectangle':
-                        this.shapeClass = Rectangle;
-                        break;
-                    case 'circle':
-                        this.shapeClass = Circle;
-                        break;
+                switch (options.type) {
+                case 'rectangle':
+                    this.shapeClass = Rectangle;
+                    break;
+                case 'circle':
+                    this.shapeClass = Circle;
+                    break;
+                default:
+                    break;
                 }
 
-                return new this.shapeClass(options);
+                return new this.shapeClass(options); // eslint-disable-line new-cap
             };
 
             vm.shapeFactory = new ShapeFactory();
@@ -78,7 +78,7 @@ angular.module('jsPatternsDemo')
             vm.shapes = [];
 
             vm.addShape = function() {
-                var newShape;
+                let newShape;
                 if (vm.customize) {
                     newShape = vm.shapeFactory.createShape({
                         type: vm.shapeChoice,

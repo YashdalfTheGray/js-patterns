@@ -9,7 +9,7 @@
             <md-radio-button value="rectangle">Rectangle</md-radio-button>
             <md-radio-button value="circle">Circle</md-radio-button>
         </md-radio-group>
-        <md-checkbox ng-model="ctrl.customize" aria-label="Customize Shape">
+        <md-checkbox style="margin-top: 16px;" ng-model="ctrl.customize" aria-label="Customize Shape">
             Customize your shape?
         </md-checkbox>
         <md-content layout-padding layout="row" flex ng-show="ctrl.customize && ctrl.shapeChoice === 'rectangle'">

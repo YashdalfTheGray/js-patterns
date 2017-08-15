@@ -7,8 +7,8 @@
             <md-list-item ng-repeat="e in ctrl.employees">
                 {{e.accept(ctrl.printVisitor)}}
             </md-list-item>
-            <md-list-item layout="row">
-                <md-input-container class="new-employee-align" id="empname-input-container">
+            <md-list-item layout="row" flex layout-align="start center">
+                <md-input-container style="margin-right: 16px;" id="empname-input-container">
                     <label>Employee Name</label>
                     <input ng-model="ctrl.empName" id="empname-input">
                 </md-input-container>

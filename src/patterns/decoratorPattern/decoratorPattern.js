@@ -1,14 +1,12 @@
-/* global angular */
-/* global _ */
+import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular.module('jsPatternsDemo')
-.controller('DecoratorPatternCtrl', 
+.controller('DecoratorPatternCtrl',
     [
         function() {
-            "use strict";
-            
-            var vm = this;
-            
+            const vm = this;
+
             function Laptop() {
                 this.processor = function() {
                     return 2.5;
@@ -31,9 +29,9 @@ angular.module('jsPatternsDemo')
             }
 
             vm.upgrades = {
-                processor: function(laptop) {
-                    var p = laptop.processor();
-                    var c = laptop.cost();
+                processor(laptop) {
+                    const p = laptop.processor();
+                    const c = laptop.cost();
 
                     laptop.processor = function() {
                         return p + 0.7;
@@ -43,9 +41,9 @@ angular.module('jsPatternsDemo')
                         return c + 200;
                     };
                 },
-                memory: function(laptop) {
-                    var m = laptop.memory();
-                    var c = laptop.cost();
+                memory(laptop) {
+                    const m = laptop.memory();
+                    const c = laptop.cost();
 
                     laptop.memory = function() {
                         return m + 8;
@@ -55,9 +53,9 @@ angular.module('jsPatternsDemo')
                         return c + 100;
                     };
                 },
-                storage: function(laptop) {
-                    var s = laptop.storage();
-                    var c = laptop.cost();
+                storage(laptop) {
+                    const s = laptop.storage();
+                    const c = laptop.cost();
 
                     laptop.storage = function() {
                         return s + 384;
@@ -66,9 +64,9 @@ angular.module('jsPatternsDemo')
                         return c + 400;
                     };
                 },
-                videoMemory: function(laptop) {
-                    var v = laptop.videoMemory();
-                    var c = laptop.cost();
+                videoMemory(laptop) {
+                    const v = laptop.videoMemory();
+                    const c = laptop.cost();
 
                     laptop.videoMemory = function() {
                         return v + 2;
@@ -77,9 +75,9 @@ angular.module('jsPatternsDemo')
                         return c + 250;
                     };
                 },
-                displaySize: function(laptop) {
-                    var d = laptop.displaySize();
-                    var c = laptop.cost();
+                displaySize(laptop) {
+                    const d = laptop.displaySize();
+                    const c = laptop.cost();
 
                     laptop.displaySize = function() {
                         return d + 2.3;
@@ -100,11 +98,9 @@ angular.module('jsPatternsDemo')
 
             vm.startOver = function() {
                 vm.currentBuild = new Laptop();
-                for (var p in vm.appliedUpgrades) {
-                    if (vm.appliedUpgrades.hasOwnProperty(p)) {
-                        vm.appliedUpgrades[p] = false;
-                    }
-                }
+                Object.keys(vm.appliedUpgrades).forEach((k) => {
+                    vm.appliedUpgrades[k] = false;
+                });
             };
 
             vm.upgrade = function(upgrade, decorator, laptop) {
@@ -114,36 +110,36 @@ angular.module('jsPatternsDemo')
             };
 
             vm.format = function(key, value) {
-                if(!value) {
+                if (!value) {
                     return _.startCase(key);
                 }
 
-                var unit = '';
-                var keyStr = key.toString();
-                var valueStr;
-                var valueUnitStr;
+                let unit = '';
+                const keyStr = key.toString();
 
                 switch (keyStr) {
-                    case 'processor':
-                        unit = ' GHz';
-                        break;
-                    case 'memory':
-                    case 'storage':
-                    case 'videoMemory':
-                        unit = ' GB';
-                        break;
-                    case 'displaySize':
-                        unit = '"';
-                        break;
-                    case 'cost':
-                        unit = '$';
-                        break;
+                case 'processor':
+                    unit = ' GHz';
+                    break;
+                case 'memory':
+                case 'storage':
+                case 'videoMemory':
+                    unit = ' GB';
+                    break;
+                case 'displaySize':
+                    unit = '"';
+                    break;
+                case 'cost':
+                    unit = '$';
+                    break;
+                default:
+                    break;
                 }
 
-                valueStr = (key === 'displaySize') ? (Math.round(value() * 10) / 10) : value();
-                valueUnitStr = (keyStr === 'cost') ? unit + valueStr : valueStr + unit;
+                const valueStr = (key === 'displaySize') ? (Math.round(value() * 10) / 10) : value();
+                const valueUnitStr = (keyStr === 'cost') ? unit + valueStr : valueStr + unit;
 
-                return _.startCase(keyStr) + ' - ' + valueUnitStr;
+                return `${_.startCase(keyStr)} - ${valueUnitStr}`;
             };
 
             vm.currentBuild = new Laptop();

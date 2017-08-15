@@ -19,13 +19,13 @@
 
         <h3>List of observers</h3>
         <md-list>
-            <md-list-item ng-repeat="o in ctrl.subjectCheckbox.observers.observerList">
-                <div layout="row">
+            <md-list-item ng-repeat="o in ctrl.subjectCheckbox.s.observers.observerList">
+                <div layout="row" flex layout-align="start center">
                     <md-button class="md-icon-button md-accent" aria-label="Remove observer" ng-click="ctrl.removeObserver(o)">
                         <i class="material-icons">clear</i>
                     </md-button>
                     <div class="spacer-md"></div>
-                    <md-checkbox class="label-fix" ng-model="o.isChecked" aria-label="Observer" ng-disabled="true">
+                    <md-checkbox style="margin: 8px 0px;" ng-model="o.isChecked" aria-label="Observer" ng-disabled="true">
                         {{o.type}}
                     </md-checkbox>
                 </div>
