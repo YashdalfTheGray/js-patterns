@@ -1,6 +1,7 @@
-/* global angular */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as angular from 'angular';
+
 import Title from '../components/title';
 
 angular.module('jsPatternsDemo')
