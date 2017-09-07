@@ -84,7 +84,7 @@ class Square {
 }
 
 
-export {
+module.exports = {
     Rectangle,
     Circle,
     Triangle,
