@@ -8,7 +8,13 @@
     "build": "webpack",
     "linter": "eslint src/**/*.js webpack.config.js webpack.config.prod.js",
     "linter-autofix": "eslint --fix",
-    "release": "webpack -p --config webpack.config.prod.js"
+    "release": "webpack -p --config webpack.config.prod.js",
+    "test": "ava"
+  },
+  "ava": {
+    "files": [
+        "src/**/*.spec.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -27,6 +33,7 @@
   "homepage": "https://github.com/YashdalfTheGray/js-patterns",
   "devDependencies": {
     "auto-ngtemplate-loader": "^1.1.0",
+    "ava": "^0.22.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
