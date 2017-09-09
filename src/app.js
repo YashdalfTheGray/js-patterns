@@ -16,8 +16,7 @@ angular.module('jsPatternsDemo', [
         $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: 'home/home.tpl.html',
-            controller: 'HomeCtrl as ctrl'
+            component: 'home'
         })
         .state('abstract-factory-pattern', {
             url: '/abstract-factory-pattern',
