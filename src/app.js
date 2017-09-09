@@ -2,9 +2,10 @@ import * as angular from 'angular';
 import * as _ from 'lodash';
 import * as ngAnimate from 'angular-animate';
 import * as ngMaterial from 'angular-material';
+import uiRouter from '@uirouter/angularjs';
 
 angular.module('jsPatternsDemo', [
-    'ui.router',
+    uiRouter,
     ngAnimate,
     ngMaterial,
     'firebase'
