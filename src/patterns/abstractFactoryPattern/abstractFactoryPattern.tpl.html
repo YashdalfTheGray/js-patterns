@@ -5,31 +5,31 @@
         <h3>The Abstract Shape Factory</h3>
 
         <p>Create a new shape</p>
-        <md-radio-group ng-model="ctrl.shapeChoice" layout="row" layout-sm="column">
-            <md-radio-button ng-repeat="st in ctrl.shapeTypes" ng-if="st.reg" value="{{st.key}}">
+        <md-radio-group ng-model="$ctrl.shapeChoice" layout="row" layout-sm="column">
+            <md-radio-button ng-repeat="st in $ctrl.shapeTypes" ng-if="st.reg" value="{{st.key}}">
                 {{st.name}}
             </md-radio-button>
         </md-radio-group>
-        <md-checkbox ng-model="ctrl.randomize" aria-label="Randomize shape lengths">
+        <md-checkbox ng-model="$ctrl.randomize" aria-label="Randomize shape lengths">
             Use random numbers for lengths?
         </md-checkbox>
-        <md-button class="md-raised md-accent" ng-click="ctrl.addShape()" type="button">Add</md-button>
+        <md-button class="md-raised md-accent" ng-click="$ctrl.addShape()" type="button">Add</md-button>
 
         <div class="spacer-md"></div>
 
         <p>Register a new shape with the factory</p>
-        <md-radio-group ng-model="ctrl.shapeRegChoice" layout="row" layout-sm="column">
-            <md-radio-button ng-repeat="st in ctrl.shapeTypes" ng-if="!st.reg" value="{{st.key}}">
+        <md-radio-group ng-model="$ctrl.shapeRegChoice" layout="row" layout-sm="column">
+            <md-radio-button ng-repeat="st in $ctrl.shapeTypes" ng-if="!st.reg" value="{{st.key}}">
                 {{st.name}}
             </md-radio-button>
         </md-radio-group>
-        <md-button class="md-raised md-accent" ng-click="ctrl.registerShape()" type="button">Register</md-button>
+        <md-button class="md-raised md-accent" ng-click="$ctrl.registerShape()" type="button">Register</md-button>
 
         <div class="spacer-lg"></div>
 
         <h3>Created shapes</h3>
         <md-list>
-            <md-list-item ng-repeat="s in ctrl.shapes">
+            <md-list-item ng-repeat="s in $ctrl.shapes">
                 <p>{{s.toString()}}</p>
             </md-list-item>
         </md-list>

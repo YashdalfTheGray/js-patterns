@@ -1,15 +1,18 @@
 import * as angular from 'angular';
 import { Rectangle, Circle, Triangle, Parallelogram, Square } from '../../support';
 
-angular.module('jsPatternsDemo')
-.controller('AbstractFactoryPatternCtrl', [
-    function AbstractFactoryPatternCtrl() {
-        const vm = this;
+function getRandomNUmber() {
+    return Math.floor((Math.random() * (9 - 1)) + 1);
+}
 
-        vm.shapes = [];
-        vm.shapeChoice = 'rectangle';
-        vm.shapeRegChoice = 'triangle';
-        vm.shapeTypes = [
+class AbstractFactoryPatternCtrl {
+    $onInit() {
+        const self = this;
+
+        self.shapes = [];
+        self.shapeChoice = 'rectangle';
+        self.shapeRegChoice = 'triangle';
+        self.shapeTypes = [
             { name: 'Rectangle', key: 'rectangle', reg: true },
             { name: 'Circle', key: 'circle', reg: true },
             { name: 'Triangle', key: 'triangle', reg: false },
@@ -17,11 +20,7 @@ angular.module('jsPatternsDemo')
             { name: 'Square', key: 'square', reg: false }
         ];
 
-        function getRandomNUmber() {
-            return Math.floor((Math.random() * (9 - 1)) + 1);
-        }
-
-        vm.abstractShapeFactory = (function abstractShapeFactory() {
+        self.abstractShapeFactory = (function abstractShapeFactory() {
             const types = {};
 
             return {
@@ -34,51 +33,57 @@ angular.module('jsPatternsDemo')
                     if (Shape.prototype.area && Shape.prototype.perimeter && Shape.prototype.toString) {
                         types[type] = Shape;
                     }
-                    return vm.abstractShapeFactory;
+                    return self.abstractShapeFactory;
                 }
             };
         }());
 
-        vm.abstractShapeFactory.register('rectangle', Rectangle);
-        vm.abstractShapeFactory.register('circle', Circle);
-
-        vm.addShape = () => {
-            let newShape;
-            if (vm.randomize) {
-                newShape = vm.abstractShapeFactory.get(vm.shapeChoice, {
-                    a: getRandomNUmber(),
-                    b: getRandomNUmber(),
-                    c: getRandomNUmber(),
-                    h: getRandomNUmber(),
-                    l: getRandomNUmber(),
-                    r: getRandomNUmber()
-                });
-            }
-            else {
-                newShape = vm.abstractShapeFactory.get(vm.shapeChoice);
-            }
-            if (newShape) {
-                vm.shapes.push(newShape);
-            }
-        };
-
-        vm.registerShape = () => {
-            switch (vm.shapeRegChoice) {
-            case 'triangle':
-                vm.abstractShapeFactory.register('triangle', Triangle);
-                vm.shapeTypes[2].reg = true;
-                break;
-            case 'parallelogram':
-                vm.abstractShapeFactory.register('parallelogram', Parallelogram);
-                vm.shapeTypes[3].reg = true;
-                break;
-            case 'square':
-                vm.abstractShapeFactory.register('square', Square);
-                vm.shapeTypes[4].reg = true;
-                break;
-            default:
-                break;
-            }
-        };
+        self.abstractShapeFactory.register('rectangle', Rectangle);
+        self.abstractShapeFactory.register('circle', Circle);
     }
-]);
+
+    addShape() {
+        let newShape;
+        if (this.randomize) {
+            newShape = this.abstractShapeFactory.get(this.shapeChoice, {
+                a: getRandomNUmber(),
+                b: getRandomNUmber(),
+                c: getRandomNUmber(),
+                h: getRandomNUmber(),
+                l: getRandomNUmber(),
+                r: getRandomNUmber()
+            });
+        }
+        else {
+            newShape = this.abstractShapeFactory.get(this.shapeChoice);
+        }
+        if (newShape) {
+            this.shapes.push(newShape);
+        }
+    }
+
+    registerShape() {
+        switch (this.shapeRegChoice) {
+        case 'triangle':
+            this.abstractShapeFactory.register('triangle', Triangle);
+            this.shapeTypes[2].reg = true;
+            break;
+        case 'parallelogram':
+            this.abstractShapeFactory.register('parallelogram', Parallelogram);
+            this.shapeTypes[3].reg = true;
+            break;
+        case 'square':
+            this.abstractShapeFactory.register('square', Square);
+            this.shapeTypes[4].reg = true;
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+angular.module('jsPatternsDemo')
+.component('abstractFactoryPattern', {
+    templateUrl: 'abstractFactoryPattern.tpl.html',
+    controller: AbstractFactoryPatternCtrl
+});

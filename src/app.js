@@ -20,8 +20,7 @@ angular.module('jsPatternsDemo', [
         })
         .state('abstract-factory-pattern', {
             url: '/abstract-factory-pattern',
-            templateUrl: 'patterns/abstractFactoryPattern/abstractFactoryPattern.tpl.html',
-            controller: 'AbstractFactoryPatternCtrl as ctrl'
+            component: 'abstractFactoryPattern'
         })
         .state('command-pattern', {
             url: '/command-pattern',
