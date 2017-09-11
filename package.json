@@ -70,6 +70,7 @@
     "angular-material": "^1.1.4",
     "angular-messages": "^1.6.5",
     "lodash": "^4.17.4",
+    "material-ui": "^0.19.1",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
