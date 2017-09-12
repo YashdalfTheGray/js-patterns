@@ -7,4 +7,4 @@ require('./app.css');
 require('./markdown.css');
 require('./home/home.jsx');
 
-requireAll(require.context('./patterns', true, /\.js$/));
+requireAll(require.context('./patterns', true, /\.jsx?$/));

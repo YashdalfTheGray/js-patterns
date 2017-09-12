@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as angular from 'angular';
 
-import Title from '../components/title';
+import { Title } from '../components';
 
 const homeTemplate = `
 <md-content layout-padding layout="column">
