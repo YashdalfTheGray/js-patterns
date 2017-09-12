@@ -1,5 +1,9 @@
 import * as angular from 'angular';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+
 import { Rectangle, Circle, Triangle, Parallelogram, Square } from '../../support';
+import { AbstractFactoryPattern } from '../../components';
 
 function getRandomNUmber() {
     return Math.floor((Math.random() * (9 - 1)) + 1);
@@ -40,6 +44,15 @@ class AbstractFactoryPatternCtrl {
 
         self.abstractShapeFactory.register('rectangle', Rectangle);
         self.abstractShapeFactory.register('circle', Circle);
+
+        ReactDOM.render(
+            <AbstractFactoryPattern />,
+            document.querySelector('#absctract-factory-mount-point')
+        );
+    }
+
+    $onDestroy() {
+        ReactDOM.unmountComponentAtNode(document.querySelector('#abstact-factory-mount-point'));
     }
 
     addShape() {
