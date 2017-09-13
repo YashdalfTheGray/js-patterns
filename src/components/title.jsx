@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 
 export default function Title({ children }) {
     return (
-        <h2 style={{ padding: '8px' }}>
+        <h2 style={{ fontFamily: 'Roboto' }}>
             {children}
         </h2>
     );
