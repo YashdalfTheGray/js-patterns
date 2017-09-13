@@ -47,12 +47,12 @@ class AbstractFactoryPatternCtrl {
 
         ReactDOM.render(
             <AbstractFactoryPattern />,
-            document.querySelector('#absctract-factory-mount-point')
+            document.querySelector('#abstract-factory-mount-point')
         );
     }
 
     $onDestroy() {
-        ReactDOM.unmountComponentAtNode(document.querySelector('#abstact-factory-mount-point'));
+        ReactDOM.unmountComponentAtNode(document.querySelector('#abstract-factory-mount-point'));
     }
 
     addShape() {
