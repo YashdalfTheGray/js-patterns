@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import * as ngAnimate from 'angular-animate';
 import * as ngMaterial from 'angular-material';
 import uiRouter from '@uirouter/angularjs';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 angular.module('jsPatternsDemo', [
     uiRouter,
@@ -13,6 +14,8 @@ angular.module('jsPatternsDemo', [
 .config([
     '$urlRouterProvider', '$stateProvider', '$mdThemingProvider',
     ($urlRouterProvider, $stateProvider, $mdThemingProvider) => {
+        injectTapEventPlugin();
+
         $stateProvider
         .state('home', {
             url: '/',
