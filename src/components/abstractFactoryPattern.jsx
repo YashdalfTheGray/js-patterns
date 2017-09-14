@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 import Title from './title';
 import ThemeWrapper from './themeWrapper';
@@ -31,19 +33,29 @@ export default class AbstractFactoryPattern extends React.Component {
 
         this.state = {
             shapeTypes: [
-                { name: 'Rectangle', key: 'rectangle', reg: true },
-                { name: 'Circle', key: 'circle', reg: true },
-                { name: 'Triangle', key: 'triangle', reg: false },
-                { name: 'Parallelogram', key: 'parallelogram', reg: false },
-                { name: 'Square', key: 'square', reg: false }
+                { name: 'Rectangle', key: 'rectangle', registered: true },
+                { name: 'Circle', key: 'circle', registered: true },
+                { name: 'Triangle', key: 'triangle', registered: false },
+                { name: 'Parallelogram', key: 'parallelogram', registered: false },
+                { name: 'Square', key: 'square', registered: false }
             ],
-            shapes: []
+            shapes: [],
+            selectedToCreate: 'rectangle',
+            selectedToRegister: 'triangle'
         };
+
+        this.handleCreateMenuChange = this.handleCreateMenuChange.bind(this);
     }
 
     componentDidMount() {
         abstractShapeFactory.register('rectangle', Rectangle);
         abstractShapeFactory.register('circle', Circle);
+    }
+
+    handleCreateMenuChange(e, i) {
+        this.setState({
+            selectedToCreate: this.state.shapeTypes[i].key
+        }, () => console.log(abstractShapeFactory.get(this.state.selectedToCreate)));
     }
 
     render() {
@@ -53,7 +65,16 @@ export default class AbstractFactoryPattern extends React.Component {
                 <Card>
                     <CardHeader title="The Abstract Shape Factory" />
                     <CardText>
-                        <pre>{JSON.stringify(this.state.shapeTypes, null, 2)}</pre>
+                        <SelectField
+                            floatingLabelText="Shape to create"
+                            value={this.state.selectedToCreate}
+                            onChange={this.handleCreateMenuChange}>
+                            {
+                                this.state.shapeTypes
+                                .filter(t => t.registered)
+                                .map(t => <MenuItem value={t.key} primaryText={t.name} />)
+                            }
+                        </SelectField>
                     </CardText>
                     <CardActions>
                         <FlatButton label="Register" />
