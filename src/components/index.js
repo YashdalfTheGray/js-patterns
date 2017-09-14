@@ -1,7 +1,9 @@
 import Title from './title';
 import AbstractFactoryPattern from './abstractFactoryPattern';
+import ThemeWrapper from './themeWrapper';
 
 export {
-    Title,
-    AbstractFactoryPattern
+    AbstractFactoryPattern,
+    ThemeWrapper,
+    Title
 };
