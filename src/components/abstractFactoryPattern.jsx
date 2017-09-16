@@ -3,43 +3,23 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { startCase } from 'lodash';
 
 import Title from './title';
 import ThemeWrapper from './themeWrapper';
-import { Rectangle, Circle, Triangle, Parallelogram, Square } from '../support';
+import { Rectangle, Circle, Triangle, Parallelogram, Square, AbstractShapeFactory } from '../support';
 
 
-const abstractShapeFactory = (function abstractShapeFactory() {
-    const types = {};
-
-    return {
-        get(type, options) {
-            const Shape = types[type];
-
-            return (Shape ? new Shape(options) : null);
-        },
-        register(type, Shape) {
-            if (Shape.prototype.area && Shape.prototype.perimeter && Shape.prototype.toString) {
-                types[type] = Shape;
-            }
-            return self.abstractShapeFactory;
-        }
-    };
-}());
+const abstractShapeFactory = new AbstractShapeFactory();
 
 export default class AbstractFactoryPattern extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            shapeTypes: [
-                { name: 'Rectangle', key: 'rectangle', registered: true },
-                { name: 'Circle', key: 'circle', registered: true },
-                { name: 'Triangle', key: 'triangle', registered: false },
-                { name: 'Parallelogram', key: 'parallelogram', registered: false },
-                { name: 'Square', key: 'square', registered: false }
-            ],
-            shapes: [],
+            registeredShapes: ['rectangle', 'circle'],
+            unregisteredShapes: ['triangle', 'parallelogram', 'square'],
+            shapeInstances: [],
             selectedToCreate: 'rectangle',
             selectedToRegister: 'triangle'
         };
@@ -55,7 +35,7 @@ export default class AbstractFactoryPattern extends React.Component {
     handleCreateMenuChange(e, i) {
         this.setState({
             selectedToCreate: this.state.shapeTypes[i].key
-        }, () => console.log(abstractShapeFactory.get(this.state.selectedToCreate)));
+        });
     }
 
     render() {
@@ -72,7 +52,7 @@ export default class AbstractFactoryPattern extends React.Component {
                             {
                                 this.state.shapeTypes
                                 .filter(t => t.registered)
-                                .map(t => <MenuItem value={t.key} primaryText={t.name} />)
+                                .map(t => <MenuItem value={t.key} primaryText={startCase(t.name)} />)
                             }
                         </SelectField>
                     </CardText>
