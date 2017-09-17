@@ -3,7 +3,8 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { startCase } from 'lodash';
+import { List, ListItem } from 'material-ui/List';
+import { startCase, uniqueId } from 'lodash';
 
 import Title from './title';
 import ThemeWrapper from './themeWrapper';
@@ -51,7 +52,7 @@ export default class AbstractFactoryPattern extends React.Component {
                             onChange={this.handleCreateMenuChange}>
                             {
                                 this.state.registeredShapes
-                                .map(t => <MenuItem value={t} primaryText={startCase(t)} key={t} />)
+                                .map(t => <MenuItem value={t} primaryText={startCase(t)} key={uniqueId('type_')} />)
                             }
                         </SelectField>
                     </CardText>
@@ -59,6 +60,20 @@ export default class AbstractFactoryPattern extends React.Component {
                         <FlatButton label="Register" />
                         <FlatButton label="Create" primary />
                     </CardActions>
+                </Card>
+                <Card style={{ marginTop: '8px' }}>
+                    <CardHeader title="Created Shapes" />
+                    <CardText>
+                        <List>
+                            {(() => {
+                                if (this.state.shapeInstances.length !== 0) {
+                                    return this.state.shapeInstances
+                                    .map(i => <ListItem primaryText={i.toString()} key={uniqueId('shape_')} />);
+                                }
+                                return [<ListItem primaryText={'No shapes created yet.'} key={'no_shapes_placeholder'} />];
+                            })()}
+                        </List>
+                    </CardText>
                 </Card>
             </ThemeWrapper>
         );
