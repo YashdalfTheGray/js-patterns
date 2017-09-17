@@ -11,6 +11,7 @@ import { Rectangle, Circle, Triangle, Parallelogram, Square, AbstractShapeFactor
 
 
 const abstractShapeFactory = new AbstractShapeFactory();
+window.abstractShapeFactory = abstractShapeFactory;
 
 export default class AbstractFactoryPattern extends React.Component {
     constructor(props) {
@@ -28,13 +29,12 @@ export default class AbstractFactoryPattern extends React.Component {
     }
 
     componentDidMount() {
-        abstractShapeFactory.register('rectangle', Rectangle);
-        abstractShapeFactory.register('circle', Circle);
+        abstractShapeFactory.register('rectangle', Rectangle).register('circle', Circle);
     }
 
     handleCreateMenuChange(e, i) {
         this.setState({
-            selectedToCreate: this.state.shapeTypes[i].key
+            selectedToCreate: this.state.registeredShapes[i]
         });
     }
 
@@ -50,9 +50,8 @@ export default class AbstractFactoryPattern extends React.Component {
                             value={this.state.selectedToCreate}
                             onChange={this.handleCreateMenuChange}>
                             {
-                                this.state.shapeTypes
-                                .filter(t => t.registered)
-                                .map(t => <MenuItem value={t.key} primaryText={startCase(t.name)} />)
+                                this.state.registeredShapes
+                                .map(t => <MenuItem value={t} primaryText={startCase(t)} key={t} />)
                             }
                         </SelectField>
                     </CardText>
