@@ -70,7 +70,12 @@ export default class AbstractFactoryPattern extends React.Component {
                                     return this.state.shapeInstances
                                     .map(i => <ListItem primaryText={i.toString()} key={uniqueId('shape_')} />);
                                 }
-                                return [<ListItem primaryText={'No shapes created yet.'} key={'no_shapes_placeholder'} />];
+                                return [
+                                    <ListItem
+                                        primaryText={'No shapes created yet.'}
+                                        key={'no_shapes_placeholder'}
+                                        disabled />
+                                ];
                             })()}
                         </List>
                     </CardText>
