@@ -27,6 +27,7 @@ export default class AbstractFactoryPattern extends React.Component {
         };
 
         this.handleCreateMenuChange = this.handleCreateMenuChange.bind(this);
+        this.handleCreateClick = this.handleCreateClick.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +37,13 @@ export default class AbstractFactoryPattern extends React.Component {
     handleCreateMenuChange(e, i) {
         this.setState({
             selectedToCreate: this.state.registeredShapes[i]
+        });
+    }
+
+    handleCreateClick() {
+        const { shapeInstances, selectedToCreate } = this.state;
+        this.setState({
+            shapeInstances: [...shapeInstances, abstractShapeFactory.get(selectedToCreate)]
         });
     }
 
@@ -58,7 +66,7 @@ export default class AbstractFactoryPattern extends React.Component {
                     </CardText>
                     <CardActions>
                         <FlatButton label="Register" />
-                        <FlatButton label="Create" primary />
+                        <FlatButton label="Create" onClick={this.handleCreateClick} primary />
                     </CardActions>
                 </Card>
                 <Card style={{ marginTop: '8px' }}>
