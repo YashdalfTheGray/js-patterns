@@ -4,12 +4,16 @@ import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import { List, ListItem } from 'material-ui/List';
+import Toggle from 'material-ui/Toggle';
 import { startCase, uniqueId } from 'lodash';
 
 import Title from './title';
 import ThemeWrapper from './themeWrapper';
 import { Rectangle, Circle, Triangle, Parallelogram, Square, AbstractShapeFactory } from '../support';
 
+function getRandomNUmber() {
+    return Math.floor((Math.random() * (9 - 1)) + 1);
+}
 
 const abstractShapeFactory = new AbstractShapeFactory();
 window.abstractShapeFactory = abstractShapeFactory;
@@ -23,11 +27,13 @@ export default class AbstractFactoryPattern extends React.Component {
             unregisteredShapes: ['triangle', 'parallelogram', 'square'],
             shapeInstances: [],
             selectedToCreate: 'rectangle',
-            selectedToRegister: 'triangle'
+            selectedToRegister: 'triangle',
+            useRandomValues: false
         };
 
         this.handleCreateMenuChange = this.handleCreateMenuChange.bind(this);
         this.handleCreateClick = this.handleCreateClick.bind(this);
+        this.handleRandomToggle = this.handleRandomToggle.bind(this);
     }
 
     componentDidMount() {
@@ -41,10 +47,32 @@ export default class AbstractFactoryPattern extends React.Component {
     }
 
     handleCreateClick() {
-        const { shapeInstances, selectedToCreate } = this.state;
-        this.setState({
-            shapeInstances: [...shapeInstances, abstractShapeFactory.get(selectedToCreate)]
-        });
+        const { shapeInstances, selectedToCreate, useRandomValues } = this.state;
+
+        if (useRandomValues) {
+            this.setState({
+                shapeInstances: [
+                    ...shapeInstances,
+                    abstractShapeFactory.get(selectedToCreate, {
+                        a: getRandomNUmber(),
+                        b: getRandomNUmber(),
+                        c: getRandomNUmber(),
+                        h: getRandomNUmber(),
+                        l: getRandomNUmber(),
+                        r: getRandomNUmber()
+                    })
+                ]
+            });
+        }
+        else {
+            this.setState({
+                shapeInstances: [...shapeInstances, abstractShapeFactory.get(selectedToCreate)]
+            });
+        }
+    }
+
+    handleRandomToggle(e, isEnabled) {
+        this.setState({ useRandomValues: isEnabled });
     }
 
     render() {
@@ -63,6 +91,11 @@ export default class AbstractFactoryPattern extends React.Component {
                                 .map(t => <MenuItem value={t} primaryText={startCase(t)} key={uniqueId('type_')} />)
                             }
                         </SelectField>
+                        <Toggle
+                            label="Use random values to initialize shape"
+                            labelPosition="right"
+                            toggled={this.state.useRandomValues}
+                            onToggle={this.handleRandomToggle} />
                     </CardText>
                     <CardActions>
                         <FlatButton label="Register" />
