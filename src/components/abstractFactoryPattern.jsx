@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import { List, ListItem } from 'material-ui/List';
 import Toggle from 'material-ui/Toggle';
@@ -28,12 +30,16 @@ export default class AbstractFactoryPattern extends React.Component {
             shapeInstances: [],
             selectedToCreate: 'rectangle',
             selectedToRegister: 'triangle',
-            useRandomValues: false
+            useRandomValues: false,
+            popoverAnchor: null,
+            popoverOpen: false
         };
 
         this.handleCreateMenuChange = this.handleCreateMenuChange.bind(this);
         this.handleCreateClick = this.handleCreateClick.bind(this);
         this.handleRandomToggle = this.handleRandomToggle.bind(this);
+        this.handleRegisterClick = this.handleRegisterClick.bind(this);
+        this.handleRequestClose = this.handleRequestClose.bind(this);
     }
 
     componentDidMount() {
@@ -75,6 +81,19 @@ export default class AbstractFactoryPattern extends React.Component {
         this.setState({ useRandomValues: isEnabled });
     }
 
+    handleRegisterClick(e) {
+        e.preventDefault();
+
+        this.setState({
+            popoverOpen: true,
+            popoverAnchor: e.currentTarget
+        });
+    }
+
+    handleRequestClose() {
+        this.setState({ popoverOpen: false });
+    }
+
     render() {
         return (
             <ThemeWrapper>
@@ -93,13 +112,24 @@ export default class AbstractFactoryPattern extends React.Component {
                         </SelectField>
                         <Toggle
                             label="Use random values to initialize shape"
+                            style={{ marginTop: '8px' }}
                             labelPosition="right"
                             toggled={this.state.useRandomValues}
                             onToggle={this.handleRandomToggle} />
                     </CardText>
                     <CardActions>
-                        <FlatButton label="Register" />
+                        <FlatButton label="Register" onClick={this.handleRegisterClick} />
                         <FlatButton label="Create" onClick={this.handleCreateClick} primary />
+                        <Popover
+                            anchorEl={this.state.popoverAnchor}
+                            open={this.state.popoverOpen}
+                            onRequestClose={this.handleRequestClose}>
+                            <Menu>
+                                <MenuItem primaryText="Triangle" />
+                                <MenuItem primaryText="Parallelogram" />
+                                <MenuItem primaryText="Square" />
+                            </Menu>
+                        </Popover>
                     </CardActions>
                 </Card>
                 <Card style={{ marginTop: '8px' }}>
