@@ -69,7 +69,7 @@
     "angular-aria": "^1.6.5",
     "angular-material": "^1.1.4",
     "angular-messages": "^1.6.5",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "material-ui": "^0.19.1",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
